@@ -2,24 +2,16 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 LineLength:
   Max: 160
-Style/ClassAndModuleChildren:
-  Enabled: false
 Style/NumericLiterals:
-  Enabled: false
-Style/MixinUsage:
-  Enabled: false
-Bundler/OrderedGems:
-  Enabled: false
-Style/SymbolArray:
   Enabled: false
 Style/Documentation:
   Enabled: false
 Style/EmptyMethod:
   Enabled: false
-Style/StringLiterals:
-  Enabled: false
 Metrics/MethodLength:
   Enabled: true
   Max: 15
-Style/StderrPuts:
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/MixinUsage:
   Enabled: false
