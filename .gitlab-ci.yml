@@ -24,7 +24,8 @@ rubocop:
   stage: static_code_analysis
   script:
   - rubocop
-  only: branches
+  only:
+  - branches
 
 rspec:
   stage: test
