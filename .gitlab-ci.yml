@@ -1,0 +1,50 @@
+image: "ruby:2.5.1"
+
+services:
+  - postgres:latest
+
+variables:
+  POSTGRES_DB: database_name
+
+cache:
+  paths:
+    - vendor/ruby
+
+stages:
+  - static_code_analysis
+  - test
+  - deploy
+
+before_script:
+  - ruby -v 
+  - gem install bundler  --no-ri --no-rdoc
+  - bundle install -j $(nproc) --path vendor
+
+rubocop:
+  stage: static_code_analysis
+  script:
+  - rubocop
+  only: branches
+
+rspec:
+  stage: test
+  script:
+  - rspec
+
+deploy_staging:
+  stage: deploy
+  type: deploy
+  environment: staging
+  script:
+  - gem install dpl
+  - dpl --provider=heroku --app=omae-app --api-key=$HEROKU_PRODUCTION_KEY
+  only: develop
+
+
+deploy:
+  stage: deploy
+  environment: production
+  script:
+  - gem install dpl
+  - dpl --provider=heroku --app=omae-app --api-key=$HEROKU_PRODUCTION_KEY
+  only: master
