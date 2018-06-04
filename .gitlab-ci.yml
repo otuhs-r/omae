@@ -38,7 +38,8 @@ deploy_staging:
   script:
   - gem install dpl
   - dpl --provider=heroku --app=omae-app --api-key=$HEROKU_PRODUCTION_KEY
-  only: develop
+  only:
+  - develop
 
 
 deploy:
@@ -47,4 +48,5 @@ deploy:
   script:
   - gem install dpl
   - dpl --provider=heroku --app=omae-app --api-key=$HEROKU_PRODUCTION_KEY
-  only: master
+  only:
+  - master
