@@ -17,6 +17,7 @@ stages:
 
 before_script:
   - ruby -v 
+  - apt-get update -q && apt-get install nodejs -yqq
   - gem install bundler  --no-ri --no-rdoc
   - bundle install -j $(nproc) --path vendor
 
