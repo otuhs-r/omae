@@ -1,10 +1,8 @@
-image: "ruby:2.5.1"
-
 services:
   - postgres:latest
 
 variables:
-  POSTGRES_DB: database_name
+  POSTGRES_DB: omae_test
 
 cache:
   paths:
@@ -31,6 +29,7 @@ rubocop:
 rspec:
   stage: test
   script:
+  - RAILS_ENV=test bundle exec rails db:create db:schema:load
   - bundle exec rspec
 
 deploy_staging:
