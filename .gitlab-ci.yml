@@ -23,14 +23,14 @@ before_script:
 rubocop:
   stage: static_code_analysis
   script:
-  - rubocop
+  - bundle exec rubocop
   only:
   - branches
 
 rspec:
   stage: test
   script:
-  - rspec
+  - bundle exec rspec
 
 deploy_staging:
   stage: deploy
@@ -38,7 +38,7 @@ deploy_staging:
   environment: staging
   script:
   - gem install dpl
-  - dpl --provider=heroku --app=omae-app --api-key=$HEROKU_PRODUCTION_KEY
+  - dpl --provider=heroku --app=omae-app-staging --api-key=$HEROKU_PRODUCTION_KEY
   only:
   - develop
 
