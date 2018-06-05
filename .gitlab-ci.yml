@@ -31,6 +31,7 @@ rspec:
   script:
   - cp config/database.yml.gitlab config/database.yml
   - RAILS_ENV=test bundle exec rails db:create db:schema:load
+  - RAILS_ENV=test bundle exec rails db:migrate
   - bundle exec rspec
 
 deploy_staging:
