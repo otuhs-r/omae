@@ -36,7 +36,6 @@ rspec:
 
 deploy_staging:
   stage: deploy
-  type: deploy
   environment: staging
   script:
   - gem install dpl
