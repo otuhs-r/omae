@@ -1,6 +1,5 @@
 [![pipeline status](https://gitlab.com/omae-app/omae/badges/master/pipeline.svg)](https://gitlab.com/omae-app/omae/commits/master)
 [![coverage report](https://gitlab.com/omae-app/omae/badges/master/coverage.svg)](https://gitlab.com/omae-app/omae/commits/master)
-
 # チケット運用
 
 ## Idea
@@ -38,10 +37,25 @@
     * `fix:`：バグの修正
     * `refactor:`：リファクタリング
     * `test:`：テストの追加/変更など
+    * `docs:`：ドキュメントのみの変更
 
 > **参考：**
 > [【今日からできる】コミットメッセージに 「プレフィックス」 をつけるだけで、開発効率が上がった話](https://qiita.com/numanomanu/items/45dd285b286a1f7280ed)
 
+## マージリクエスト
+
+* 基本的には、マージリクエストには最低限以下の項目を記載する
+    * やりたかったこと
+    * やったこと
+    * 動作確認方法
+* `Remove source branch when merge request is accepted.` にはチェックを入れて不要なブランチは残さないようにする
+* コメントにはプレフィックスをつける
+    * `MUST`：必ず直すべき
+    * `IMO`：緩やかな指摘 (In my opinion, 自分なら直すけどどう?)
+    * `NITS`：細かい指摘 (nitspick)
+
+> **参考：**
+> [プルリク時のコメント略語](https://qiita.com/dolaemoso/items/2ed8c48ff349e6add45b)
 
 # 開発
 
