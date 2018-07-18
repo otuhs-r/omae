@@ -46,9 +46,23 @@ describe User do
     is_expected.to be_invalid
   end
 
-  it 'is invalid with a work start time later than work end time.'
-  it 'is invalid with a rest start time later than rest end time.'
+  it 'is invalid with a work start time later than work end time.' do
+    @user.work_start_time = Time.mktime(2018, 1, 1, 20, 0, 0)
+    is_expected.to be_invalid
+  end
 
-  it 'is invalid with a rest start time earlier than work start time.'
-  it 'is invalid with a rest end time later than work end time.'
+  it 'is invalid with a rest start time later than rest end time.' do
+    @user.rest_start_time = Time.mktime(2018, 1, 1, 15, 0, 0)
+    is_expected.to be_invalid
+  end
+
+  it 'is invalid with a rest start time earlier than work start time.' do
+    @user.rest_start_time = Time.mktime(2018, 1, 1, 5, 0, 0)
+    is_expected.to be_invalid
+  end
+
+  it 'is invalid with a rest end time later than work end time.' do
+    @user.rest_end_time = Time.mktime(2018, 1, 1, 20, 0, 0)
+    is_expected.to be_invalid
+  end
 end
