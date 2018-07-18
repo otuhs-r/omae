@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validate :time_validation
 
   def time_validation
-    if work_start_time.present? && work_end_time.present? && work_start_time.to_s(:time) >= work_end_time.to_s(:time) 
+    if work_start_time.present? && work_end_time.present? && work_start_time.to_s(:time) >= work_end_time.to_s(:time)
       errors.add(:work_end_time, 'should be later than work start time.')
     elsif rest_start_time.present? && rest_end_time.present? && rest_start_time.to_s(:time) >= rest_end_time.to_s(:time)
       errors.add(:rest_end_time, 'should be later than rest start time.')
