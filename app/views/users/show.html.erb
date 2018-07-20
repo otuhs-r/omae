@@ -10,18 +10,18 @@
     </tr>
     <tr>
       <th>始業時刻</th>
-      <td><%= @work_start_time %></td>
+      <td><%= @work_start_time.to_s(:time) %></td>
     </tr>
     <tr>
       <th>終業時刻</th>
-      <td><%= @work_end_time %></td>
+      <td><%= @work_end_time.to_s(:time) %></td>
     </tr>
     <tr>
       <th>休憩開始時刻</th>
-      <td><%= @rest_start_time %></td>
+      <td><%= @rest_start_time.to_s(:time) %></td>
     </tr>
     <tr>
       <th>休憩終了時刻</th>
-      <td><%= @rest_end_time %></td>
+      <td><%= @rest_end_time.to_s(:time) %></td>
     </tr>
 </table>
