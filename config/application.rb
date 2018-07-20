@@ -26,5 +26,7 @@ module Omae
                        request_specs: false
       g.fixture_replacement :factory_bot, dir: 'spec/factories'
     end
+    config.time_zone = 'Tokyo'
+    config.active_record.time_zone_aware_types = [:datetime]
   end
 end
