@@ -38,22 +38,22 @@
 
   <div class="field">
     <%= f.label :work_start_time %><br />
-    <%= f.time_select :work_start_time %>
+    <%= f.time_select :work_start_time, { minute_step: 15 } %>
   </div>
 
   <div class="field">
     <%= f.label :work_end_time %><br />
-    <%= f.time_select :work_end_time %>
+    <%= f.time_select :work_end_time, { minute_step: 15 } %>
   </div>
 
   <div class="field">
     <%= f.label :rest_start_time %><br />
-    <%= f.time_select :rest_start_time %>
+    <%= f.time_select :rest_start_time, { minute_step: 15 } %>
   </div>
 
   <div class="field">
     <%= f.label :rest_end_time %><br />
-    <%= f.time_select :rest_end_time %>
+    <%= f.time_select :rest_end_time, { minute_step: 15 } %>
   </div>
 
   <div class="actions">
