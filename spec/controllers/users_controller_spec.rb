@@ -33,6 +33,16 @@ describe UsersController, type: :controller do
         get 'show'
         expect(response).to render_template :show
       end
+
+      it 'has expected date.' do
+        get 'show'
+        expect(assigns(:user_name)).to eq user.user_name
+        expect(assigns(:email)).to eq user.email
+        expect(assigns(:work_start_time)).to eq user.work_start_time
+        expect(assigns(:work_end_time)).to eq user.work_end_time
+        expect(assigns(:rest_start_time)).to eq user.rest_start_time
+        expect(assigns(:rest_end_time)).to eq user.rest_end_time
+      end
     end
   end
 end
