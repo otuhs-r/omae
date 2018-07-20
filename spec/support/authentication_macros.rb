@@ -5,6 +5,6 @@ module AuthenticationMacros
     let(:user) { build(:user) }
     before do
       login_as(user, scope: :user)
-    end 
+    end
   end
 end
