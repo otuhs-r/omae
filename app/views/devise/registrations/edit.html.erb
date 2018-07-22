@@ -61,7 +61,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :work_start_time, autocomplete: "off",  class: "form-control timepicker" %>
+              <%= f.text_field :work_start_time, autocomplete: "off",  class: "form-control timepicker", value: current_user.work_start_time.to_s(:time) %>
             </div>
           </div>
         </div>
@@ -72,7 +72,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :work_end_time, autocomplete: "off", class: "form-control timepicker" %>
+              <%= f.text_field :work_end_time, autocomplete: "off", class: "form-control timepicker", value: current_user.work_end_time.to_s(:time) %>
             </div>
           </div>
         </div>
@@ -85,7 +85,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :rest_start_time, autocomplete: "off",  class: "form-control timepicker" %>
+              <%= f.text_field :rest_start_time, autocomplete: "off",  class: "form-control timepicker", value: current_user.rest_start_time.to_s(:time) %>
             </div>
           </div>
         </div>
@@ -96,7 +96,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :rest_end_time, autocomplete: "off",  class: "form-control timepicker" %>
+              <%= f.text_field :rest_end_time, autocomplete: "off",  class: "form-control timepicker", value: current_user.rest_end_time.to_s(:time) %>
             </div>
           </div>
         </div>
