@@ -33,6 +33,22 @@ rspec:
   - RAILS_ENV=test bundle exec rails db:create db:schema:load
   - RAILS_ENV=test bundle exec rails db:migrate
   - bundle exec rspec
+  artifacts:
+    paths:
+    - coverage/
+
+pages:
+  stage: deploy
+  dependencies:
+  - rspec
+  script:
+  - mv coverage/ public/
+  artifacts:
+    paths:
+    - public
+    expire_in: 30 days
+  only:
+  - master
 
 deploy_staging:
   stage: deploy
