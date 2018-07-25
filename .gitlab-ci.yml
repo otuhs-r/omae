@@ -54,8 +54,9 @@ deploy_staging:
   stage: deploy
   environment: staging
   script:
-  - gem install dpl
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
   - bundle exec rake assets:precompile
+  - gem install dpl
   - dpl --provider=heroku --app=omae-app-staging --api-key=$HEROKU_PRODUCTION_KEY
   only:
   - develop
