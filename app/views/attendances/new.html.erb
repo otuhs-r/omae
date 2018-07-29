@@ -1,0 +1,5 @@
+<h1>New Attendance</h1>
+
+<%= render 'form', {attendance: @attendance, path: user_attendances_path(current_user.id)}%>
+
+<%= link_to 'Back', user_attendances_path %>

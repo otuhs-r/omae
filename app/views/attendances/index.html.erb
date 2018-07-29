@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Attendances</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Clock in time</th>
+      <th>Clock out time</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attendances.each do |attendance| %>
+      <tr>
+        <td><%= attendance.clock_in_time %></td>
+        <td><%= attendance.clock_out_time %></td>
+        <td><%= attendance.user %></td>
+        <td><%= link_to 'Edit', edit_user_attendance_path(current_user.id, attendance.id) %></td>
+        <td><%= link_to 'Destroy', user_attendances_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attendance', new_user_attendance_path %>

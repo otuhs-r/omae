@@ -1,0 +1,32 @@
+<%= form_with(model: attendance, url: path, local: true) do |form| %>
+  <% if attendance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
+
+      <ul>
+      <% attendance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :clock_in_time %>
+    <%= form.datetime_select :clock_in_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :clock_out_time %>
+    <%= form.datetime_select :clock_out_time %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
