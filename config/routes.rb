@@ -5,5 +5,4 @@ Rails.application.routes.draw do
   resources :users do
     resources :attendances, except: :show
   end
-
 end
