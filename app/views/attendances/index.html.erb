@@ -21,23 +21,19 @@
         <tr>
           <th>Clock in Time</th>
           <th>Clock out Time</th>
-          <th></th>
         </tr>
       </thead>
       <tbody>
         <% @attendances.each do |attendance| %>
-          <tr>
+          <tr data-link="<%= edit_user_attendance_path(current_user.id, attendance) %>">
             <td><%= attendance.clock_in_time %></td>
             <td><%= attendance.clock_out_time %></td>
-            <td align="center">
-              <div class="btn-group">
-                <%= link_to '', edit_user_attendance_path(current_user.id, attendance), class: "btn btn-default fa fa-edit" %>
-                <%= link_to '', user_attendance_path(current_user.id, attendance), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash" %>
-              </div>
           </tr>
         <% end %>
       </tbody>
     </table>
+  </div>
+</div>
 
 <script>
   $(document).ready(function() {
@@ -50,4 +46,10 @@
       'autoWidth'     : true
     })
   });
+</script>
+
+<script>
+$("tr[data-link]").click(function() {
+  window.location = $(this).data("link")
+})
 </script>
