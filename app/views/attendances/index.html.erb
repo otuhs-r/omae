@@ -25,7 +25,7 @@
       </thead>
       <tbody>
         <% @attendances.each do |attendance| %>
-          <tr data-link="<%= edit_user_attendance_path(current_user.id, attendance) %>">
+          <tr data-link="<%= edit_user_attendance_path(current_user.id, attendance) %>" class="clickable">
             <td><%= attendance.clock_in_time %></td>
             <td><%= attendance.clock_out_time %></td>
           </tr>
