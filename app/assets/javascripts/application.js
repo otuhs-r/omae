@@ -14,6 +14,8 @@
 //= require bootstrap/dist/js/bootstrap.min
 //= require admin-lte/dist/js/adminlte.min
 //= require bootstrap-timepicker/js/bootstrap-timepicker.min
+//= require datatables.net/js/jquery.dataTables.min
+//= require datatables.net-bs/js/dataTables.bootstrap.min 
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks

@@ -1,30 +1,53 @@
-<p id="notice"><%= notice %></p>
+<section class="content-header">
+  <h1>
+    <i class="fa fa-database"></i> Attendances
+    <small>omae</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><%= link_to 'Home', root_path %></li>
+    <li class="active">Attendances</li>
+  </ol>
+</section>
+<hr>
 
-<h1>Attendances</h1>
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Attendances</h3>
+    <%= link_to 'New Attendance', new_user_attendance_path, class: "btn btn-success pull-right" %>
+  </div>
+  <div class="box-body">
+    <table class="table table-bordered table-hover dataTable" id="attendances">
+      <thead>
+        <tr>
+          <th>Clock in Time</th>
+          <th>Clock out Time</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @attendances.each do |attendance| %>
+          <tr>
+            <td><%= attendance.clock_in_time %></td>
+            <td><%= attendance.clock_out_time %></td>
+            <td align="center">
+              <div class="btn-group">
+                <%= link_to '', edit_user_attendance_path(current_user.id, attendance), class: "btn btn-default fa fa-edit" %>
+                <%= link_to '', user_attendance_path(current_user.id, attendance), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash" %>
+              </div>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-<table>
-  <thead>
-    <tr>
-      <th>Clock in time</th>
-      <th>Clock out time</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @attendances.each do |attendance| %>
-      <tr>
-        <td><%= attendance.clock_in_time %></td>
-        <td><%= attendance.clock_out_time %></td>
-        <td><%= attendance.user %></td>
-        <td><%= link_to 'Edit', edit_user_attendance_path(current_user.id, attendance.id) %></td>
-        <td><%= link_to 'Destroy', user_attendances_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Attendance', new_user_attendance_path %>
+<script>
+  $(document).ready(function() {
+    $('#attendances').DataTable({
+      'paging'        : false,
+      'lengthChange'  : false,
+      'searching'     : false,
+      'ordering'      : true,
+      'info'          : false,
+      'autoWidth'     : true
+    })
+  });
+</script>
