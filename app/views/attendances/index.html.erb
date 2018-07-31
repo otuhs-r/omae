@@ -26,8 +26,8 @@
       <tbody>
         <% @attendances.each do |attendance| %>
           <tr data-link="<%= edit_user_attendance_path(current_user.id, attendance) %>" class="clickable">
-            <td><%= attendance.clock_in_time %></td>
-            <td><%= attendance.clock_out_time %></td>
+            <td><%= "#{attendance.date} #{attendance.clock_in_time.to_s(:time)}" %></td>
+            <td><%= "#{attendance.date} #{attendance.clock_out_time.to_s(:time)}" %></td>
           </tr>
         <% end %>
       </tbody>
@@ -49,7 +49,7 @@
 </script>
 
 <script>
-$("tr[data-link]").click(function() {
-  window.location = $(this).data("link")
-})
+  $("tr[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
 </script>

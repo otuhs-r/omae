@@ -29,19 +29,46 @@
           </ul>
         </div>
       <% end %>
-
-      <div class="form-group">
-        <%= form.label :clock_in_time %>
-        <%= form.datetime_select :clock_in_time, class: "form-control" %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= form.label 'Date' %>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              <%= form.text_field :date, class: "form-control datepicker", autocomplete: "off", value: mode == 'New' ? Date.today : attendance.date %>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="form-group">
-        <%= form.label :clock_out_time %>
-        <%= form.datetime_select :clock_out_time, class: "form-control" %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :clock_in_time %><br />
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-clock-o"></i>
+              </div>
+              <%= form.text_field :clock_in_time, class: "form-control timepicker 1minute-step", value: mode == 'New' ? current_user.work_start_time.to_s(:time) : attendance.clock_in_time.to_s(:time) %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :clock_out_time %><br>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-clock-o"></i>
+              </div>
+              <%= form.text_field :clock_out_time, class: "form-control timepicker 1minute-step", value: mode == 'New' ? current_user.work_end_time.to_s(:time) : attendance.clock_out_time.to_s(:time) %>
+            </div>
+          </div>
+        </div>
       </div>
-
       <div class="actions">
         <%= form.submit mode == 'New' ? 'Create' : 'Update', class: "btn btn-success" %>
+        <%= link_to 'Cancel', user_attendances_path(current_user.id), class: "btn btn-default" %>
       </div>
     <% end %>
   </div>

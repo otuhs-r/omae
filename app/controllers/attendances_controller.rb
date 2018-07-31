@@ -44,6 +44,6 @@ class AttendancesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def attendance_params
-    params.require(:attendance).permit(:clock_in_time, :clock_out_time)
+    params.require(:attendance).permit(:clock_in_time, :clock_out_time, :date)
   end
 end
