@@ -1,6 +1,6 @@
 class Attendance < ApplicationRecord
   belongs_to :user
-  validates :date, uniqueness: true, presence: true
+  validates :date, uniqueness: { scope: :user }, presence: true
   validates :clock_in_time, presence: true
   validates :clock_out_time, presence: true
   validate :time_validation
