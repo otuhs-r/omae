@@ -30,7 +30,7 @@ describe UsersController, type: :controller do
         expect(response).to render_template :show
       end
 
-      it 'has expected date.' do
+      it 'has expected data.' do
         get 'show'
         expect(assigns(:user_name)).to eq subject.current_user.user_name
         expect(assigns(:email)).to eq subject.current_user.email
