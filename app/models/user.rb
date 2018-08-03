@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :rest_start_time, presence: true
   validates :rest_end_time, presence: true
   validate :time_validation
+  has_many :attendances
 
   def time_validation
     if work_start_time.present? && work_end_time.present? && work_start_time.to_s(:time) >= work_end_time.to_s(:time)

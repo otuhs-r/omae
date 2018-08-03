@@ -1,0 +1,55 @@
+<section class="content-header">
+  <h1>
+    <i class="fa fa-database"></i> Attendances
+    <small>omae</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><%= link_to 'Home', root_path %></li>
+    <li class="active">Attendances</li>
+  </ol>
+</section>
+<hr>
+
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Attendances</h3>
+    <%= link_to 'New Attendance', new_user_attendance_path, class: "btn btn-success pull-right" %>
+  </div>
+  <div class="box-body">
+    <table class="table table-bordered table-hover dataTable" id="attendances">
+      <thead>
+        <tr>
+          <th>Clock in Time</th>
+          <th>Clock out Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @attendances.each do |attendance| %>
+          <tr data-link="<%= edit_user_attendance_path(current_user.id, attendance) %>" class="clickable">
+            <td><%= "#{attendance.date} #{attendance.clock_in_time.to_s(:time)}" %></td>
+            <td><%= "#{attendance.date} #{attendance.clock_out_time.to_s(:time)}" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#attendances').DataTable({
+      'paging'        : false,
+      'lengthChange'  : false,
+      'searching'     : false,
+      'ordering'      : true,
+      'info'          : false,
+      'autoWidth'     : true
+    })
+  });
+</script>
+
+<script>
+  $("tr[data-link]").click(function() {
+    window.location = $(this).data("link")
+  })
+</script>

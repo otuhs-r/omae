@@ -1,0 +1,75 @@
+<section class="content-header">
+  <h1>
+    <i class="fa fa-clock-o"></i> <%= mode %> Attendance
+    <small>omae</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><%= link_to 'Home', root_path %></li>
+    <li><%= link_to 'Attendances', user_attendances_path(current_user.id) %></li>
+    <li class="active"><%= mode %></li>
+  </ol>
+</section>
+<hr>
+
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title"><%= mode %> Attendance</h3>
+    <%= link_to '', user_attendance_path(current_user.id, attendance), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash pull-right" if mode == 'Edit' %>
+  </div>
+  <div class="box-body">
+    <%= form_with(model: attendance, url: path, local: true) do |form| %>
+      <% if attendance.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(attendance.errors.count, "error") %> prohibited this attendance from being saved:</h2>
+
+          <ul>
+          <% attendance.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-group">
+            <%= form.label 'Date' %>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-calendar"></i>
+              </div>
+              <%= form.text_field :date, class: "form-control datepicker", autocomplete: "off", value: mode == 'New' ? Date.today : attendance.date %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :clock_in_time %><br />
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-clock-o"></i>
+              </div>
+              <%= form.text_field :clock_in_time, class: "form-control timepicker 1minute-step", value: mode == 'New' ? current_user.work_start_time.to_s(:time) : attendance.clock_in_time.to_s(:time) %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= form.label :clock_out_time %><br>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-clock-o"></i>
+              </div>
+              <%= form.text_field :clock_out_time, class: "form-control timepicker 1minute-step", value: mode == 'New' ? current_user.work_end_time.to_s(:time) : attendance.clock_out_time.to_s(:time) %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <%= form.submit mode == 'New' ? 'Create' : 'Update', class: "btn btn-success" %>
+        <%= link_to 'Cancel', user_attendances_path(current_user.id), class: "btn btn-default" %>
+      </div>
+    <% end %>
+  </div>
+</div>
