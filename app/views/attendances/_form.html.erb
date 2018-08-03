@@ -37,7 +37,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-calendar"></i>
               </div>
-              <%= form.text_field :date, class: "form-control datepicker", autocomplete: "off", value: mode == 'New' ? Date.today : attendance.date %>
+              <%= form.text_field :date, class: "form-control datepicker", autocomplete: "off", value: default_date(mode, attendance) %>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= form.text_field :clock_in_time, class: "form-control timepicker 1minute-step", value: mode == 'New' ? current_user.work_start_time.to_s(:time) : attendance.clock_in_time.to_s(:time) %>
+              <%= form.text_field :clock_in_time, class: "form-control timepicker 1minute-step", value: default_clock_in_time(mode, attendance) %>
             </div>
           </div>
         </div>
@@ -61,7 +61,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= form.text_field :clock_out_time, class: "form-control timepicker 1minute-step", value: mode == 'New' ? current_user.work_end_time.to_s(:time) : attendance.clock_out_time.to_s(:time) %>
+              <%= form.text_field :clock_out_time, class: "form-control timepicker 1minute-step", value: default_clock_out_time(mode, attendance) %>
             </div>
           </div>
         </div>
