@@ -11,6 +11,20 @@ class User < ApplicationRecord
   validate :time_validation
   has_many :attendances
 
+  def working_hours
+    sum_working_sec = attendances.reduce(0.0) do |sum, attendance|
+      sum + convert_to_sec(attendance.working_hours)
+    end
+    Time.at(sum_working_sec).utc.to_s(:time)
+  end
+
+  def extra_working_hours
+    sum_extra_working_sec = attendances.reduce(0.0) do |sum, attendance|
+      sum + convert_to_sec(attendance.extra_working_hours)
+    end
+    Time.at(sum_extra_working_sec).utc.to_s(:time)
+  end
+
   def time_validation
     unless work_start_time.present? && work_end_time.present? && rest_start_time.present? && rest_end_time.present?
       return
@@ -25,5 +39,11 @@ class User < ApplicationRecord
     elsif rest_end_time.to_s(:time) >= work_end_time.to_s(:time)
       errors.add(:work_end_time, 'should be later than rest end time.')
     end
+  end
+
+  private
+
+  def convert_to_sec(working_hour_string)
+    Time.parse(working_hour_string) - Time.parse('00:00')
   end
 end
