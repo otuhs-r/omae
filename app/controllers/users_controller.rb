@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  def index
+  def dashboard
+    @sum_working_hours = current_user.working_hours
+    @sum_extra_working_hours = current_user.extra_working_hours
   end
 
   def show

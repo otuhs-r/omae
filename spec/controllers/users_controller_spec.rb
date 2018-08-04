@@ -1,18 +1,18 @@
 require 'rails_helper'
 
 describe UsersController, type: :controller do
-  describe 'GET #index' do
+  describe 'GET #dashboard' do
     context 'with authentication' do
       login_user
 
       it 'returns success status.' do
-        get 'index'
+        get 'dashboard'
         expect(response.status).to eq 200
       end
 
       it 'displays :index template' do
-        get 'index'
-        expect(response).to render_template :index
+        get 'dashboard'
+        expect(response).to render_template :dashboard
       end
     end
   end
