@@ -5,14 +5,26 @@ describe UsersController, type: :controller do
     context 'with authentication' do
       login_user
 
-      it 'returns success status.' do
+      before do
         get 'dashboard'
+      end
+
+      it 'returns success status.' do
         expect(response.status).to eq 200
       end
 
       it 'displays :index template' do
-        get 'dashboard'
         expect(response).to render_template :dashboard
+      end
+
+      context 'when current user has no attendances' do
+        it 'assigns @sum_working_hours.' do
+          expect(assigns(:sum_working_hours)).to eq '00:00'
+        end
+
+        it 'assigns @sum_extra_working_hours.' do
+          expect(assigns(:sum_extra_working_hours)).to eq '00:00'
+        end
       end
     end
   end

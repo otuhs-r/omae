@@ -15,14 +15,14 @@ class User < ApplicationRecord
     sum_working_sec = attendances.reduce(0.0) do |sum, attendance|
       sum + convert_to_sec(attendance.working_hours)
     end
-    Time.at(sum_working_sec).utc.to_s(:time)
+    convert_to_hh_mm(sum_working_sec)
   end
 
   def extra_working_hours
     sum_extra_working_sec = attendances.reduce(0.0) do |sum, attendance|
       sum + convert_to_sec(attendance.extra_working_hours)
     end
-    Time.at(sum_extra_working_sec).utc.to_s(:time)
+    convert_to_hh_mm(sum_extra_working_sec)
   end
 
   def time_validation
@@ -43,7 +43,13 @@ class User < ApplicationRecord
 
   private
 
-  def convert_to_sec(working_hour_string)
-    Time.parse(working_hour_string) - Time.parse('00:00')
+  def convert_to_sec(hour_string)
+    Time.parse(hour_string) - Time.parse('00:00')
+  end
+
+  def convert_to_hh_mm(seconds)
+    min = seconds.to_i / 60
+    hh, mm = min.divmod(60)
+    "%02d:%02d" % [hh, mm]
   end
 end
