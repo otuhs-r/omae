@@ -50,6 +50,6 @@ class User < ApplicationRecord
   def convert_to_hh_mm(seconds)
     min = seconds.to_i / 60
     hh, mm = min.divmod(60)
-    "%02d:%02d" % [hh, mm]
+    format('%02d:%02d', hh, mm)
   end
 end
