@@ -53,9 +53,11 @@
         <section class="sidebar">
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu" data-widget="tree">
-            <li class="header"></li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href=<%= root_path %>><i class="fa fa-area-chart"></i><span>Dashboard</span></a></li>
+            <li><a href=<%= root_path %>><i class="fa fa-area-chart"></i><span>Dashboard</span></a></li>
+            <% if user_signed_in? %>
+              <li><a href=<%= user_attendances_path(current_user.id) %>><i class="fa fa-database"></i><span>Attendances</span></a></li>
+            <% end %>
           </ul>
           <!-- /.sidebar-menu -->
         </section>
@@ -113,5 +115,7 @@
         </div>
       </aside>
     </div>
+    <%= javascript_include_tag "timepicker" %>
+    <%= javascript_include_tag "datepicker" %>
   </body>
 </html>
