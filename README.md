@@ -1,4 +1,4 @@
-[![pipeline status](https://gitlab.com/omae-app/omae/badges/master/pipeline.svg)](https://gitlab.com/omae-app/omae/commits/master)
+[![pipeline status](https://gitlab.com/omae-app/omae/badges/master/pipeline.svg)](https://gitlab.com/omae-app/omae/pipelines)
 [![coverage report](https://gitlab.com/omae-app/omae/badges/master/coverage.svg?job=rspec)](https://omae-app.gitlab.io/omae/)
 
 # OMAE
