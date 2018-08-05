@@ -17,14 +17,16 @@ describe UsersController, type: :controller do
         expect(response).to render_template :dashboard
       end
 
-      context 'when current user has no attendances' do
-        it 'assigns @sum_working_hours.' do
-          expect(assigns(:sum_working_hours)).to eq '00:00'
-        end
+      it 'assigns @sum_working_hours.' do
+        expect(assigns(:sum_working_hours)).to eq '00:00'
+      end
 
-        it 'assigns @sum_extra_working_hours.' do
-          expect(assigns(:sum_extra_working_hours)).to eq '00:00'
-        end
+      it 'assigns @sum_extra_working_hours.' do
+        expect(assigns(:sum_extra_working_hours)).to eq '00:00'
+      end
+
+      it 'assigns @extra_working_rate.' do
+        expect(assigns(:extra_working_rate)).to eq 0
       end
     end
   end

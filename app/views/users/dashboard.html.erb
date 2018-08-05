@@ -30,6 +30,12 @@
       <div class="info-box-content">
         <span class="info-box-text">all extra working</span>
         <span class="info-box-number"><%= @sum_extra_working_hours %></span>
+        <div class="progress">
+          <div class="progress-bar bg-green" style="width: <%= @extra_working_rate %>%"></div>
+        </div>
+        <span class="progress-description">
+          <strong><%= @extra_working_rate %>%</strong> of all working hours
+        </span>
       </div>
     </div>
   </div>
