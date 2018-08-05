@@ -11,6 +11,18 @@ class User < ApplicationRecord
   validate :time_validation
   has_many :attendances
 
+  def working_seconds
+    attendances.reduce(0.0) do |sum, attendance|
+      sum + attendance.working_seconds
+    end
+  end
+
+  def extra_working_seconds
+    attendances.reduce(0.0) do |sum, attendance|
+      sum + attendance.extra_working_seconds
+    end
+  end
+
   def time_validation
     unless work_start_time.present? && work_end_time.present? && rest_start_time.present? && rest_end_time.present?
       return
