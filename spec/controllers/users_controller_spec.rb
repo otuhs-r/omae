@@ -13,7 +13,7 @@ describe UsersController, type: :controller do
         expect(response.status).to eq 200
       end
 
-      it 'displays :index template' do
+      it 'displays :dashboard template' do
         expect(response).to render_template :dashboard
       end
 

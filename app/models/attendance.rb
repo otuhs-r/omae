@@ -5,12 +5,12 @@ class Attendance < ApplicationRecord
   validates :clock_out_time, presence: true
   validate :time_validation
 
-  def working_hours
-    Time.at(diff_sec_between_clock_in_out - resting_sec).utc.to_s(:time)
+  def working_seconds
+    diff_sec_between_clock_in_out - resting_sec
   end
 
-  def extra_working_hours
-    Time.at(earlier_sec + later_sec).utc.to_s(:time)
+  def extra_working_seconds
+    earlier_extra_sec + later_extra_sec
   end
 
   def time_validation
@@ -50,7 +50,7 @@ class Attendance < ApplicationRecord
     end
   end
 
-  def earlier_sec
+  def earlier_extra_sec
     setup_times
     if @work_start_time <= @clock_out_time
       earlier_sec = @work_start_time - @clock_in_time
@@ -60,7 +60,7 @@ class Attendance < ApplicationRecord
     end
   end
 
-  def later_sec
+  def later_extra_sec
     setup_times
     if @clock_in_time <= @work_end_time
       later_sec = @clock_out_time - @work_end_time

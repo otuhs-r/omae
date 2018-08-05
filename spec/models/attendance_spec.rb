@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 describe Attendance do
+  include ApplicationHelper
+
   describe 'validation' do
     subject { attendance }
 
@@ -60,11 +62,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '08:10'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '08:10'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:10'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:10'
       end
     end
 
@@ -72,11 +74,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_out_time: '2018-07-29 16:00:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '06:05'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '06:05'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
       end
     end
 
@@ -84,11 +86,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_out_time: '2018-07-29 12:30:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '03:05'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '03:05'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
       end
     end
 
@@ -96,11 +98,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_out_time: '2018-07-29 11:00:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '02:05'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '02:05'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
       end
     end
 
@@ -108,11 +110,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_in_time: '2018-07-29 05:00:00', clock_out_time: '2018-07-29 08:00:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '03:00'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '03:00'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '03:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '03:00'
       end
     end
 
@@ -120,11 +122,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_in_time: '2018-07-29 10:00:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '07:05'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '07:05'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
       end
     end
 
@@ -132,11 +134,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_in_time: '2018-07-29 10:00:00', clock_out_time: '2018-07-29 17:00:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '06:00'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '06:00'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
       end
     end
 
@@ -144,11 +146,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_in_time: '2018-07-29 10:00:00', clock_out_time: '2018-07-29 12:30:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '02:00'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '02:00'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
       end
     end
 
@@ -156,11 +158,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_in_time: '2018-07-29 10:00:00', clock_out_time: '2018-07-29 11:00:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '01:00'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '01:00'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
       end
     end
 
@@ -168,11 +170,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_in_time: '2018-07-29 12:30:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '05:05'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '05:05'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
       end
     end
 
@@ -180,11 +182,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_in_time: '2018-07-29 12:30:00', clock_out_time: '2018-07-29 17:00:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '04:00'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '04:00'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
       end
     end
 
@@ -192,11 +194,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_in_time: '2018-07-29 12:30:00', clock_out_time: '2018-07-29 12:45:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '00:00'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
       end
     end
 
@@ -204,11 +206,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_in_time: '2018-07-29 14:00:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '04:05'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '04:05'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
       end
     end
 
@@ -216,11 +218,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_in_time: '2018-07-29 14:00:00', clock_out_time: '2018-07-29 17:00:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '03:00'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '03:00'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
       end
     end
 
@@ -228,11 +230,11 @@ describe Attendance do
       let(:attendance) { build(:attendance, clock_in_time: '2018-07-29 19:00:00', clock_out_time: '2018-07-29 23:00:00', user: build(:user)) }
 
       it 'calculates working hours correctly.' do
-        expect(attendance.working_hours).to eq '04:00'
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '04:00'
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(attendance.extra_working_hours).to eq '04:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '04:00'
       end
     end
   end

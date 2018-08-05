@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
+  include ApplicationHelper
+
   def dashboard
-    @sum_working_hours = current_user.working_hours
-    @sum_extra_working_hours = current_user.extra_working_hours
+    @sum_working_hours = convert_to_hh_mm_from_sec(current_user.working_seconds)
+    @sum_extra_working_hours = convert_to_hh_mm_from_sec(current_user.extra_working_seconds)
   end
 
   def show
