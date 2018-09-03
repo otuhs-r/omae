@@ -72,11 +72,11 @@ describe User do
       let(:user) { build(:user) }
 
       it 'returns working hours valued zero.' do
-        expect(convert_to_hh_mm_from_sec(user.working_seconds)).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(user.working_seconds(Date.today - 1, Date.today))).to eq '00:00'
       end
 
       it 'returns extra working hours valued zero.' do
-        expect(convert_to_hh_mm_from_sec(user.extra_working_seconds)).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(user.extra_working_seconds(Date.today - 1, Date.today))).to eq '00:00'
       end
     end
 
@@ -86,11 +86,11 @@ describe User do
       let!(:attendance2) { create(:attendance, date: '2018-07-30', user: user) }
 
       it 'sammrizes all working hours.' do
-        expect(convert_to_hh_mm_from_sec(user.working_seconds)).to eq '16:20'
+        expect(convert_to_hh_mm_from_sec(user.working_seconds(Date.new(2018, 7, 29), Date.today))).to eq '16:20'
       end
 
       it 'sammrizes all extra working hours.' do
-        expect(convert_to_hh_mm_from_sec(user.extra_working_seconds)).to eq '00:20'
+        expect(convert_to_hh_mm_from_sec(user.extra_working_seconds(Date.new(2018, 7, 29), Date.today))).to eq '00:20'
       end
     end
   end

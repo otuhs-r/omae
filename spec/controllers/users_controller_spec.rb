@@ -1,36 +1,6 @@
 require 'rails_helper'
 
 describe UsersController, type: :controller do
-  describe 'GET #dashboard' do
-    context 'with authentication' do
-      login_user
-
-      before do
-        get 'dashboard'
-      end
-
-      it 'returns success status.' do
-        expect(response.status).to eq 200
-      end
-
-      it 'displays :dashboard template' do
-        expect(response).to render_template :dashboard
-      end
-
-      it 'assigns @sum_working_hours.' do
-        expect(assigns(:sum_working_hours)).to eq '00:00'
-      end
-
-      it 'assigns @sum_extra_working_hours.' do
-        expect(assigns(:sum_extra_working_hours)).to eq '00:00'
-      end
-
-      it 'assigns @extra_working_rate.' do
-        expect(assigns(:extra_working_rate)).to eq 0
-      end
-    end
-  end
-
   describe 'GET #show' do
     context 'with authentication' do
       login_user

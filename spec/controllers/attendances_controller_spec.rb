@@ -1,6 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe AttendancesController, type: :controller do
+  describe 'GET #dashboard' do
+    context 'with authentication' do
+      login_user
+
+      before do
+        get 'dashboard'
+      end
+
+      it 'returns success status.' do
+        expect(response.status).to eq 200
+      end
+
+      it 'displays :dashboard template' do
+        expect(response).to render_template :dashboard
+      end
+    end
+  end
+
   describe 'GET #index' do
     login_user
 
