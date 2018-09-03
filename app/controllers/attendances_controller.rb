@@ -1,5 +1,9 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: %i[show edit update destroy]
+  include ApplicationHelper
+
+  def dashboard
+  end
 
   def index
     @attendances = current_user.attendances
