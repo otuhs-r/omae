@@ -32,7 +32,7 @@
       <span class="info-box-icon bg-aqua">
         <i class="fa fa-building"></i>
       </span>
-      <%= render 'sum_of_working_hours' %>
+      <%= render 'all_working_hours', { all_working_seconds: @all_working_seconds } %>
     </div>
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
@@ -40,7 +40,7 @@
       <span class="info-box-icon bg-green">
         <i class="fa fa-building-o"></i>
       </span>
-      <%= render 'sum_of_extra_working_hours' %>
+      <%= render 'all_extra_working_hours', { all_extra_working_seconds: @all_extra_working_seconds } %>
     </div>
   </div>
 </div>

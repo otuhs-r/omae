@@ -10,7 +10,7 @@ class Api::BaseController < ApplicationController
 
   def format_dates
     @start_date = if params[:start_date].nil? || params[:start_date].empty?
-                    1.month.ago.midnight
+                    Time.current.beginning_of_month
                   else
                     params[:start_date].to_datetime.midnight
                   end

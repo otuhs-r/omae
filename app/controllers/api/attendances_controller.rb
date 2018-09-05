@@ -1,5 +1,7 @@
 class Api::AttendancesController < Api::BaseController
   def create
+    @all_working_seconds = current_user.working_seconds(@start_date, @end_date)
+    @all_extra_working_seconds = current_user.extra_working_seconds(@start_date, @end_date)
     respond_to do |format|
       format.js
     end

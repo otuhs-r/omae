@@ -3,6 +3,11 @@ class AttendancesController < ApplicationController
   include ApplicationHelper
 
   def dashboard
+    now = Time.current
+    start_date = now.beginning_of_month
+    end_date = now
+    @all_working_seconds = current_user.working_seconds(start_date, end_date)
+    @all_extra_working_seconds = current_user.extra_working_seconds(start_date, end_date)
   end
 
   def index
