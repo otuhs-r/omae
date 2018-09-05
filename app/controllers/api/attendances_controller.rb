@@ -2,7 +2,7 @@ class Api::AttendancesController < Api::BaseController
   def create
     @all_working_seconds = current_user.working_seconds(@start_date, @end_date)
     @all_extra_working_seconds = current_user.extra_working_seconds(@start_date, @end_date)
-    @extra_working_rate = @all_working_seconds == 0 ? 0 : ((@all_extra_working_seconds / @all_working_seconds) * 100).to_i
+    @extra_working_rate = @all_working_seconds.zero? ? 0 : ((@all_extra_working_seconds / @all_working_seconds) * 100).to_i
     respond_to do |format|
       format.js
     end
