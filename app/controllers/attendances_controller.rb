@@ -1,5 +1,15 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: %i[show edit update destroy]
+  include ApplicationHelper
+
+  def dashboard
+    now = Time.current
+    start_date = now.beginning_of_month
+    end_date = now
+    @all_working_seconds = current_user.working_seconds(start_date, end_date)
+    @all_extra_working_seconds = current_user.extra_working_seconds(start_date, end_date)
+    @extra_working_rate = @all_working_seconds.zero? ? 0 : ((@all_extra_working_seconds / @all_working_seconds) * 100).to_i
+  end
 
   def index
     @attendances = current_user.attendances
