@@ -2,19 +2,25 @@ require 'rails_helper'
 
 RSpec.describe AttendancesController, type: :controller do
   describe 'GET #dashboard' do
-    context 'with authentication' do
-      login_user
+    login_user
 
-      before do
-        get 'dashboard'
-      end
+    before do
+      get 'dashboard'
+    end
 
-      it 'returns success status.' do
-        expect(response.status).to eq 200
-      end
+    it 'returns success status.' do
+      expect(response.status).to eq 200
+    end
 
-      it 'displays :dashboard template' do
-        expect(response).to render_template :dashboard
+    it 'displays :dashboard template' do
+      expect(response).to render_template :dashboard
+    end
+
+    context 'when current user has no attendances' do
+      it 'has zero.' do
+        expect(assigns(:all_working_seconds)).to eq 0
+        expect(assigns(:all_extra_working_seconds)).to eq 0
+        expect(assigns(:extra_working_rate)).to eq 0
       end
     end
   end
