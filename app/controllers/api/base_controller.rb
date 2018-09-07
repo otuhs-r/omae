@@ -1,12 +1,7 @@
 class Api::BaseController < ApplicationController
-  before_action :load_data
   before_action :format_dates
 
   private
-
-  def load_data
-    @attendances = current_user.attendances
-  end
 
   def format_dates
     @start_date = if params[:start_date].nil? || params[:start_date].empty?
