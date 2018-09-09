@@ -54,8 +54,8 @@
           <!-- Sidebar Menu -->
           <ul class="sidebar-menu" data-widget="tree">
             <!-- Optionally, you can add icons to the links -->
-            <li><a href=<%= root_path %>><i class="fa fa-area-chart"></i><span>Dashboard</span></a></li>
             <% if user_signed_in? %>
+              <li><a href=<%= root_path %>><i class="fa fa-area-chart"></i><span>Dashboard</span></a></li>
               <li><a href=<%= user_attendances_path(current_user.id) %>><i class="fa fa-database"></i><span>Attendances</span></a></li>
             <% end %>
           </ul>
