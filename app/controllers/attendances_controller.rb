@@ -15,25 +15,33 @@ class AttendancesController < ApplicationController
     attendance_params = { date: Time.zone.now.to_date, clock_in_time: Time.zone.now, clock_out_time: current_user.work_end_time }
     attendance = current_user.attendances.build(attendance_params)
 
-    if attendance.save
-      redirect_to user_attendances_path(current_user.id), notice: 'Attendance was successfully created.'
-    end
+    flash_message = if attendance.save
+                      { notice: 'Attendance was successfully created.' }
+                    else
+                      { alert: 'Attendance has been already recorded today.' }
+                    end
+    redirect_to user_attendances_path(current_user.id), flash_message
   end
 
   def clock_out_just_now
     attendance = current_user.attendances.find { |a| a.date == Time.zone.now.to_date }
-    if attendance
-      attendance_params = { clock_out_time: Time.zone.now }
-      if attendance.update(attendance_params)
-        redirect_to user_attendances_path(current_user.id), notice: 'Attendance was successfully updated.'
-      end
-    else
-      attendance_params = { date: Time.zone.now.to_date, clock_in_time: current_user.work_start_time, clock_out_time: Time.zone.now }
-      attendance = current_user.attendances.build(attendance_params)
-      if attendance.save
-        redirect_to user_attendances_path(current_user.id), notice: 'Attendance was successfully created.'
-      end
-    end
+    flash_message = if attendance
+                      attendance_params = { clock_out_time: Time.zone.now }
+                      if attendance.update(attendance_params)
+                        { notice: 'Attendance was successfully updated.' }
+                      else
+                        { alert: 'Clock out time should be later than clock in time.' }
+                      end
+                    else
+                      attendance_params = { date: Time.zone.now.to_date, clock_in_time: current_user.work_start_time, clock_out_time: Time.zone.now }
+                      attendance = current_user.attendances.build(attendance_params)
+                      if attendance.save
+                        { notice: 'Attendance was successfully created.' }
+                      else
+                        { alert: 'Clock out time should be later than clock in time.' }
+                      end
+                    end
+    redirect_to user_attendances_path(current_user.id), flash_message
   end
 
   def index

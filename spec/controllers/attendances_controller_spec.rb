@@ -39,10 +39,10 @@ RSpec.describe AttendancesController, type: :controller do
         end
       end
 
-      it 'returns a success response.' do
+      it 'returns a redirection response.' do
         travel_to('2018-7-29 18:00'.to_time) do
           post :clock_in_just_now, params: { user_id: subject.current_user.id }
-          expect(response.status).to eq 204
+          expect(response.status).to eq 302
         end
       end
     end
@@ -78,7 +78,7 @@ RSpec.describe AttendancesController, type: :controller do
         end
       end
 
-      it 'returns a success response.' do
+      it 'returns a redirection response.' do
         travel_to('2018-7-29 18:00'.to_time) do
           post :clock_out_just_now, params: { user_id: subject.current_user.id }
           expect(response.status).to eq 302
