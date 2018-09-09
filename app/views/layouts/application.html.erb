@@ -70,9 +70,15 @@
         <!-- Main content -->
         <section class="content container-fluid">
           <% if flash[:notice] %>
-            <p class="alert alert-info"><i class="icon fa fa-info"></i><%= notice %></p>
+            <div class="alert alert-info alert-dismissible">
+              <i class="icon fa fa-info"></i><%= notice %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="close"><i class="fa fa-close"></i></button>
+            </div>
           <% elsif flash[:alert] %>
-            <p class="alert alert-danger"><i class="icon fa fa-warning"></i><%= alert %></p>
+            <div class="alert alert-danger alert-dismissible">
+              <i class="icon fa fa-warning"></i><%= alert %>
+              <button type="button" class="close" data-dismiss="alert" aria-label="close"><i class="fa fa-close"></i></button>
+            </div>
           <% end %>
           <%= yield %>
         </section>
