@@ -11,6 +11,31 @@ class AttendancesController < ApplicationController
     @extra_working_rate = @all_working_seconds.zero? ? 0 : ((@all_extra_working_seconds / @all_working_seconds) * 100).to_i
   end
 
+  def clock_in_just_now
+    attendance_params = { date: Time.zone.now.to_date, clock_in_time: Time.zone.now, clock_out_time: current_user.work_end_time }
+    attendance = current_user.attendances.build(attendance_params)
+
+    if attendance.save
+      redirect_to user_attendances_path(current_user.id), notice: 'Attendance was successfully created.'
+    end
+  end
+
+  def clock_out_just_now
+    attendance = current_user.attendances.find { |a| a.date == Time.zone.now.to_date }
+    if attendance
+      attendance_params = { clock_out_time: Time.zone.now }
+      if attendance.update(attendance_params)
+        redirect_to user_attendances_path(current_user.id), notice: 'Attendance was successfully updated.'
+      end
+    else
+      attendance_params = { date: Time.zone.now.to_date, clock_in_time: current_user.work_start_time, clock_out_time: Time.zone.now }
+      attendance = current_user.attendances.build(attendance_params)
+      if attendance.save
+        redirect_to user_attendances_path(current_user.id), notice: 'Attendance was successfully created.'
+      end
+    end
+  end
+
   def index
     @attendances = current_user.attendances
   end
