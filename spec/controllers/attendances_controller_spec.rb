@@ -25,6 +25,91 @@ RSpec.describe AttendancesController, type: :controller do
     end
   end
 
+  describe 'POST #clock_in_just_now' do
+    login_user
+
+    context 'when an attendance has already been recorded' do
+      let!(:attendance) { create(:attendance, user: subject.current_user) }
+
+      it 'does not create a attendance.' do
+        travel_to(Time.zone.local(2018, 7, 29, 18, 0, 0).to_time) do
+          expect do
+            post :clock_in_just_now, params: { user_id: subject.current_user.id }
+          end.to change(Attendance, :count).by(0)
+        end
+      end
+
+      it 'returns a redirection response.' do
+        travel_to(Time.zone.local(2018, 7, 29, 18, 0, 0).to_time) do
+          post :clock_in_just_now, params: { user_id: subject.current_user.id }
+          expect(response.status).to eq 302
+        end
+      end
+    end
+
+    context 'when an attendance has NOT been recorded' do
+      it 'creates a new attemdance.' do
+        expect do
+          post :clock_in_just_now, params: { user_id: subject.current_user.id }
+        end.to change(Attendance, :count).by(1)
+      end
+
+      it 'records current time as clock in time.' do
+        travel_to(Time.zone.local(2018, 9, 7, 9, 0, 0).to_time) do
+          post :clock_in_just_now, params: { user_id: subject.current_user.id }
+          expect(Attendance.last.date).to eq Time.zone.now.to_date
+          expect(Attendance.last.clock_in_time).to eq Time.zone.now
+        end
+      end
+    end
+  end
+
+  describe 'POST #clock_out_just_now' do
+    login_user
+
+    context 'when an attendance has already been recorded' do
+      let!(:attendance) { create(:attendance, user: subject.current_user) }
+
+      it 'does not create a attendance.' do
+        travel_to(Time.zone.local(2018, 7, 29, 18, 0, 0).to_time) do
+          expect do
+            post :clock_out_just_now, params: { user_id: subject.current_user.id }
+          end.to change(Attendance, :count).by(0)
+        end
+      end
+
+      it 'returns a redirection response.' do
+        travel_to(Time.zone.local(2018, 7, 29, 18, 0, 0).to_time) do
+          post :clock_out_just_now, params: { user_id: subject.current_user.id }
+          expect(response.status).to eq 302
+        end
+      end
+
+      it 'changes clock out time.' do
+        travel_to(Time.zone.local(2018, 7, 29, 18, 0, 0).to_time) do
+          post :clock_out_just_now, params: { user_id: subject.current_user.id }
+          expect(Attendance.find_by(date: Time.zone.now.to_date).clock_out_time).to eq Time.zone.now
+        end
+      end
+    end
+
+    context 'when an attendance has NOT been recorded' do
+      it 'creates a new attendance.' do
+        expect do
+          post :clock_out_just_now, params: { user_id: subject.current_user.id }
+        end.to change(Attendance, :count).by(1)
+      end
+
+      it 'records current time as clock out time.' do
+        travel_to(Time.zone.local(2018, 9, 7, 18, 0, 0).to_time) do
+          post :clock_out_just_now, params: { user_id: subject.current_user.id }
+          expect(Attendance.last.date).to eq Time.zone.now.to_date
+          expect(Attendance.last.clock_out_time).to eq Time.zone.now
+        end
+      end
+    end
+  end
+
   describe 'GET #index' do
     login_user
 

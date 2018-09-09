@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root 'attendances#dashboard'
   devise_for :users
   get 'users/show', to: 'users#show'
+  post 'attendances/clock_in_just_now', to: 'attendances#clock_in_just_now'
+  post 'attendances/clock_out_just_now', to: 'attendances#clock_out_just_now'
   resources :users, except: :show do
     resources :attendances, except: :show
   end
