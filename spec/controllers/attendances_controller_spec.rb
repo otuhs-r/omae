@@ -49,9 +49,11 @@ RSpec.describe AttendancesController, type: :controller do
 
     context 'when an attendance has NOT been recorded' do
       it 'creates a new attemdance.' do
-        expect do
-          post :clock_in_just_now, params: { user_id: subject.current_user.id }
-        end.to change(Attendance, :count).by(1)
+        travel_to(Time.zone.local(2018, 9, 7, 9, 0, 0).to_time) do
+          expect do
+            post :clock_in_just_now, params: { user_id: subject.current_user.id }
+          end.to change(Attendance, :count).by(1)
+        end
       end
 
       it 'records current time as clock in time.' do
@@ -95,9 +97,11 @@ RSpec.describe AttendancesController, type: :controller do
 
     context 'when an attendance has NOT been recorded' do
       it 'creates a new attendance.' do
-        expect do
-          post :clock_out_just_now, params: { user_id: subject.current_user.id }
-        end.to change(Attendance, :count).by(1)
+        travel_to(Time.zone.local(2018, 9, 7, 18, 0, 0).to_time) do
+          expect do
+            post :clock_out_just_now, params: { user_id: subject.current_user.id }
+          end.to change(Attendance, :count).by(1)
+        end
       end
 
       it 'records current time as clock out time.' do
