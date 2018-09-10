@@ -25,11 +25,10 @@ class User < ApplicationRecord
 
   def average_extra_working_hours_by_day_of_week(start_date, end_date)
     grouped_attendances = attendances.where(date: start_date..end_date).group_by_day_of_week(&:date)
-    counts = count_days_for_each_day_of_week(start_date, end_date)
     data = {}
     { 0 => 'Sun', 1 => 'Mon', 2 => 'Tue', 3 => 'Wed', 4 => 'Thu', 5 => 'Fri', 6 => 'Sat' }.each do |key, value|
       if grouped_attendances.key?(key)
-        average = grouped_attendances[key].reduce(0.0) { |sum, attendance| sum + attendance.extra_working_seconds / 3600 } / counts[key]
+        average = grouped_attendances[key].reduce(0.0) { |sum, attendance| sum + attendance.extra_working_seconds / 3600 } / grouped_attendances[key].count
         data.store(value, average.round(2))
       else
         data.store(value, 0.0)
@@ -52,17 +51,5 @@ class User < ApplicationRecord
     elsif rest_end_time.to_s(:time) >= work_end_time.to_s(:time)
       errors.add(:work_end_time, 'should be later than rest end time.')
     end
-  end
-
-  private
-
-  def count_days_for_each_day_of_week(start_date, end_date)
-    method_names = %i[sunday? monday? tuesday? wednesday? thursday? friday? saturday?]
-    data = {}
-    (0..6).each do |i|
-      count = (start_date.to_datetime..end_date.to_datetime).select { |day| day.send(method_names[i]) }.count
-      data.store(i, count)
-    end
-    data
   end
 end
