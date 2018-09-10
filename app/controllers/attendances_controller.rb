@@ -8,6 +8,7 @@ class AttendancesController < ApplicationController
     end_date = now
     @all_working_seconds = current_user.working_seconds(start_date, end_date)
     @all_extra_working_seconds = current_user.extra_working_seconds(start_date, end_date)
+    @average_extra_working_seconds = @all_extra_working_seconds / current_user.attendances.where(date: start_date..end_date).count
     @extra_working_rate = @all_working_seconds.zero? ? 0 : ((@all_extra_working_seconds / @all_working_seconds) * 100).to_i
   end
 
