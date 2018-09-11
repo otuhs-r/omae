@@ -117,7 +117,7 @@ describe User do
       it 'returns average of extra working hours by day of week correctly.' do
         expect(user.average_extra_working_hours_by_day_of_week(
                  Time.zone.local(2018, 7, 9, 0, 0, 0), Time.zone.local(2018, 7, 30, 0, 0, 0)
-               )).to eq('Sun' => 0.06, 'Mon' => 0.17, 'Tue' => 0.0, 'Wed' => 0.0, 'Thu' => 0.0, 'Fri' => 0.0, 'Sat' => 0.0)
+               )).to eq('Sun' => 0.17, 'Mon' => 0.17, 'Tue' => 0.0, 'Wed' => 0.0, 'Thu' => 0.0, 'Fri' => 0.0, 'Sat' => 0.0)
       end
     end
   end

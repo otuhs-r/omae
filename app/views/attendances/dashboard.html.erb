@@ -43,6 +43,14 @@
       <%= render 'all_extra_working_hours', { all_extra_working_seconds: @all_extra_working_seconds, extra_working_rate: @extra_working_rate } %>
     </div>
   </div>
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-yellow">
+        <i class="fa fa-balance-scale"></i>
+      </span>
+      <%= render 'average_extra_working_hours', { average_extra_working_seconds: @average_extra_working_seconds } %>
+    </div>
+  </div>
 </div>
 <div class="row">
   <div class="col-md-6 col-sm-12">
