@@ -28,6 +28,7 @@
     <table class="table table-bordered table-hover dataTable" id="attendances">
       <thead>
         <tr>
+          <th>Date</th>
           <th>Clock in Time</th>
           <th>Clock out Time</th>
         </tr>
@@ -35,8 +36,9 @@
       <tbody>
         <% @attendances.each do |attendance| %>
           <tr data-link="<%= edit_user_attendance_path(current_user.id, attendance) %>" class="clickable">
-            <td><%= "#{attendance.date} #{attendance.clock_in_time.to_s(:time)}" %></td>
-            <td><%= "#{attendance.date} #{attendance.clock_out_time.to_s(:time)}" %></td>
+            <td><%= "#{attendance.date}" %></td>
+            <td><%= "#{attendance.clock_in_time.to_s(:time)}" %></td>
+            <td><%= "#{attendance.clock_out_time.to_s(:time)}" %></td>
           </tr>
         <% end %>
       </tbody>
