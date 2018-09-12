@@ -14,13 +14,16 @@ class AttendancesController < ApplicationController
   end
 
   def clock_in_just_now
-    attendance_params = { date: Time.zone.now.to_date, clock_in_time: Time.zone.now, clock_out_time: current_user.work_end_time }
-    attendance = current_user.attendances.build(attendance_params)
-
-    flash_message = if attendance.save
-                      { notice: 'Attendance was successfully created.' }
-                    else
+    flash_message = if current_user.attendances.find { |a| a.date == Time.zone.now.to_date }
                       { alert: 'Attendance has been already recorded today.' }
+                    else
+                      attendance_params = { date: Time.zone.now.to_date, clock_in_time: Time.zone.now, clock_out_time: current_user.work_end_time }
+                      attendance = current_user.attendances.build(attendance_params)
+                      if attendance.save
+                        { notice: 'Attendance was successfully created.' }
+                      else
+                        { alert: 'Clock in time should be earlier than clock out time.' }
+                      end
                     end
     redirect_to user_attendances_path(current_user.id), flash_message
   end
