@@ -17,8 +17,7 @@ class AttendancesController < ApplicationController
     flash_message = if current_user.attendances.find { |a| a.date == Time.zone.now.to_date }
                       { alert: 'Attendance has been already recorded today.' }
                     else
-                      attendance_params =
-                        { date: Time.zone.now.to_date, clock_in_time: Time.zone.now, clock_out_time: current_user.work_end_time.in_time_zone('Asia/Tokyo') }
+                      attendance_params = { date: Time.zone.now.to_date, clock_in_time: Time.zone.now, clock_out_time: current_user.work_end_time }
                       attendance = current_user.attendances.build(attendance_params)
                       if attendance.save
                         { notice: 'Attendance was successfully created.' }
@@ -40,7 +39,7 @@ class AttendancesController < ApplicationController
                       end
                     else
                       attendance_params =
-                        { date: Time.zone.now.to_date, clock_in_time: current_user.work_start_time.in_time_zone('Asia/Tokyo'), clock_out_time: Time.zone.now }
+                        { date: Time.zone.now.to_date, clock_in_time: current_user.work_start_time, clock_out_time: Time.zone.now }
                       attendance = current_user.attendances.build(attendance_params)
                       if attendance.save
                         { notice: 'Attendance was successfully created.' }
