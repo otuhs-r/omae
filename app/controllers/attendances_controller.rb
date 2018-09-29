@@ -1,5 +1,54 @@
 class AttendancesController < ApplicationController
   before_action :set_attendance, only: %i[show edit update destroy]
+  include ApplicationHelper
+
+  def dashboard
+    now = Time.current
+    start_date = now.beginning_of_month
+    end_date = now
+    @all_working_seconds = current_user.working_seconds(start_date, end_date)
+    @all_extra_working_seconds = current_user.extra_working_seconds(start_date, end_date)
+    count = current_user.attendances.where(date: start_date..end_date).count
+    @average_extra_working_seconds = count.zero? ? 0 : @all_extra_working_seconds / count
+    @extra_working_rate = @all_working_seconds.zero? ? 0 : ((@all_extra_working_seconds / @all_working_seconds) * 100).to_i
+  end
+
+  def clock_in_just_now
+    flash_message = if current_user.attendances.find { |a| a.date == Time.zone.now.to_date }
+                      { alert: 'Attendance has been already recorded today.' }
+                    else
+                      attendance_params = { date: Time.zone.now.to_date, clock_in_time: Time.zone.now, clock_out_time: current_user.work_end_time }
+                      attendance = current_user.attendances.build(attendance_params)
+                      if attendance.save
+                        { notice: 'Attendance was successfully created.' }
+                      else
+                        { alert: 'Clock in time should be earlier than clock out time.' }
+                      end
+                    end
+    redirect_to user_attendances_path(current_user.id), flash_message
+  end
+
+  def clock_out_just_now
+    attendance = current_user.attendances.find { |a| a.date == Time.zone.now.to_date }
+    flash_message = if attendance
+                      attendance_params = { clock_out_time: Time.zone.now }
+                      if attendance.update(attendance_params)
+                        { notice: 'Attendance was successfully updated.' }
+                      else
+                        { alert: 'Clock out time should be later than clock in time.' }
+                      end
+                    else
+                      attendance_params =
+                        { date: Time.zone.now.to_date, clock_in_time: current_user.work_start_time, clock_out_time: Time.zone.now }
+                      attendance = current_user.attendances.build(attendance_params)
+                      if attendance.save
+                        { notice: 'Attendance was successfully created.' }
+                      else
+                        { alert: 'Clock out time should be later than clock in time.' }
+                      end
+                    end
+    redirect_to user_attendances_path(current_user.id), flash_message
+  end
 
   def index
     @attendances = current_user.attendances

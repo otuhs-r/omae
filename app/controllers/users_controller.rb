@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  def index
-  end
-
   def show
     @user_name = current_user.user_name
     @email = current_user.email
