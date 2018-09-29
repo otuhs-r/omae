@@ -11,6 +11,32 @@ class User < ApplicationRecord
   validate :time_validation
   has_many :attendances
 
+  def working_seconds(start_date, end_date)
+    attendances.where(date: start_date..end_date).reduce(0.0) do |sum, attendance|
+      sum + attendance.working_seconds
+    end
+  end
+
+  def extra_working_seconds(start_date, end_date)
+    attendances.where(date: start_date..end_date).reduce(0.0) do |sum, attendance|
+      sum + attendance.extra_working_seconds
+    end
+  end
+
+  def average_extra_working_hours_by_day_of_week(start_date, end_date)
+    grouped_attendances = attendances.where(date: start_date..end_date).group_by_day_of_week(&:date)
+    data = {}
+    { 0 => 'Sun', 1 => 'Mon', 2 => 'Tue', 3 => 'Wed', 4 => 'Thu', 5 => 'Fri', 6 => 'Sat' }.each do |key, value|
+      if grouped_attendances.key?(key)
+        average = grouped_attendances[key].reduce(0.0) { |sum, attendance| sum + attendance.extra_working_seconds / 3600 } / grouped_attendances[key].count
+        data.store(value, average.round(2))
+      else
+        data.store(value, 0.0)
+      end
+    end
+    data
+  end
+
   def time_validation
     unless work_start_time.present? && work_end_time.present? && rest_start_time.present? && rest_end_time.present?
       return

@@ -29,7 +29,7 @@
 
     ```bash
     $ rails db:create
-    $ rails db:migration
+    $ rails db:migrate
     ```
     
     > **Note:** 事前に `PostgreSQL` のインストールと起動が必要

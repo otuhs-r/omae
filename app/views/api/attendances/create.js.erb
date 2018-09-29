@@ -1,0 +1,4 @@
+$('#avg_by_day_of_week').replaceWith('<%= j render 'attendances/avg_by_day_of_week' %>');
+$('#all_working_hours').replaceWith('<%= j render 'attendances/all_working_hours', { all_working_seconds: @all_working_seconds } %>');
+$('#all_extra_working_hours').replaceWith('<%= j render 'attendances/all_extra_working_hours', { all_extra_working_seconds: @all_extra_working_seconds, extra_working_rate: @extra_working_rate } %>');
+$('#average_extra_working_hours').replaceWith('<%= j render 'attendances/average_extra_working_hours', { average_extra_working_seconds: @average_extra_working_seconds } %>');
