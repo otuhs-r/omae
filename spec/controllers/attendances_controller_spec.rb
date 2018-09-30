@@ -18,10 +18,10 @@ RSpec.describe AttendancesController, type: :controller do
 
     context 'when current user has no attendances' do
       it 'has zero.' do
-        expect(assigns(:all_working_seconds)).to eq 0
-        expect(assigns(:all_extra_working_seconds)).to eq 0
-        expect(assigns(:average_extra_working_seconds)).to eq 0
-        expect(assigns(:extra_working_rate)).to eq 0
+        expect(assigns(:dashboard).all_working_seconds).to eq 0
+        expect(assigns(:dashboard).all_extra_working_seconds).to eq 0
+        expect(assigns(:dashboard).average_extra_working_seconds).to eq 0
+        expect(assigns(:dashboard).extra_working_rate).to eq 0
       end
     end
   end

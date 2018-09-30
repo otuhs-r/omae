@@ -2,9 +2,9 @@
   <span class="info-box-text">all extra working</span>
   <span class="info-box-number"><%= convert_to_hh_mm_from_sec(all_extra_working_seconds) %></span>
   <div class="progress">
-    <div class="progress-bar bg-green" style="width: <%= @extra_working_rate %>%"></div>
+    <div class="progress-bar bg-green" style="width: <%= @dashboard.extra_working_rate %>%"></div>
   </div>
   <span class="progress-description">
-    <strong><%= @extra_working_rate %>%</strong> of all working hours
+    <strong><%= @dashboard.extra_working_rate %>%</strong> of all working hours
   </span>
 </div>
