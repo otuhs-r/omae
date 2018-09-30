@@ -4,3 +4,4 @@ $('#all_extra_working_hours').replaceWith('<%= j render 'attendances/all_extra_w
                               { all_extra_working_seconds: @dashboard.all_extra_working_seconds, extra_working_rate: @dashboard.extra_working_rate } %>');
 $('#average_extra_working_hours').replaceWith('<%= j render 'attendances/average_extra_working_hours',
                                   { average_extra_working_seconds: @dashboard.average_extra_working_seconds } %>');
+$('#days_worked').replaceWith('<%= j render 'attendances/days_worked', { days_worked: @dashboard.days_worked } %>');
