@@ -14,9 +14,9 @@
   <%= form_tag api_user_attendances_path(current_user), remote: true do %>
     <div class="col-lg-6 col-xs-9">
       <div class="input-daterange input-group" id="datepicker">
-        <input type="text" class="input-sm form-control datepicker" autocomplete="off" name="start_date" id="start_date" />
+        <input type="text" class="input-sm form-control datepicker" autocomplete="off" name="start_date" id="start_date" value=<%= Time.current.beginning_of_month %>/>
         <span class="input-group-addon">to</span>
-        <input type="text" class="input-sm form-control datepicker" autocomplete="off" name="end_date" id="end_date" />
+        <input type="text" class="input-sm form-control datepicker" autocomplete="off" name="end_date" id="end_date" value=<%= Time.current %>/>
       </div>
     </div>
     <div class="col-xs-1">
@@ -32,7 +32,7 @@
       <span class="info-box-icon bg-aqua">
         <i class="fa fa-building"></i>
       </span>
-      <%= render 'all_working_hours', { all_working_seconds: @all_working_seconds } %>
+      <%= render 'all_working_hours', { all_working_seconds: @dashboard.all_working_seconds } %>
     </div>
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
@@ -40,7 +40,8 @@
       <span class="info-box-icon bg-green">
         <i class="fa fa-building-o"></i>
       </span>
-      <%= render 'all_extra_working_hours', { all_extra_working_seconds: @all_extra_working_seconds, extra_working_rate: @extra_working_rate } %>
+      <%= render 'all_extra_working_hours',
+                 { all_extra_working_seconds: @dashboard.all_extra_working_seconds, extra_working_rate: @dashboard.extra_working_rate } %>
     </div>
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
@@ -48,7 +49,15 @@
       <span class="info-box-icon bg-yellow">
         <i class="fa fa-balance-scale"></i>
       </span>
-      <%= render 'average_extra_working_hours', { average_extra_working_seconds: @average_extra_working_seconds } %>
+      <%= render 'average_extra_working_hours', { average_extra_working_seconds: @dashboard.average_extra_working_seconds } %>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-red">
+        <i class="fa fa-calendar-check-o"></i>
+      </span>
+      <%= render 'days_worked', { days_worked: @dashboard.days_worked } %>
     </div>
   </div>
 </div>
