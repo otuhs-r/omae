@@ -52,6 +52,14 @@
       <%= render 'average_extra_working_hours', { average_extra_working_seconds: @dashboard.average_extra_working_seconds } %>
     </div>
   </div>
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <div class="info-box">
+      <span class="info-box-icon bg-red">
+        <i class="fa fa-calendar-check-o"></i>
+      </span>
+      <%= render 'days_worked', { days_worked: @dashboard.days_worked } %>
+    </div>
+  </div>
 </div>
 <div class="row">
   <div class="col-md-6 col-sm-12">
