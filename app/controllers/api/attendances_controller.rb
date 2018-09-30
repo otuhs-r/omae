@@ -1,10 +1,6 @@
 class Api::AttendancesController < Api::BaseController
   def create
-    @all_working_seconds = current_user.working_seconds(@start_date, @end_date)
-    @all_extra_working_seconds = current_user.extra_working_seconds(@start_date, @end_date)
-    count = current_user.attendances.where(date: @start_date..@end_date).count
-    @average_extra_working_seconds = count.zero? ? 0 : @all_extra_working_seconds / count
-    @extra_working_rate = @all_working_seconds.zero? ? 0 : ((@all_extra_working_seconds / @all_working_seconds) * 100).to_i
+    @dashboard = Dashboard.new(current_user, @start_date, @end_date)
     respond_to do |format|
       format.js
     end

@@ -32,7 +32,7 @@
       <span class="info-box-icon bg-aqua">
         <i class="fa fa-building"></i>
       </span>
-      <%= render 'all_working_hours', { all_working_seconds: @all_working_seconds } %>
+      <%= render 'all_working_hours', { all_working_seconds: @dashboard.all_working_seconds } %>
     </div>
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
@@ -40,7 +40,8 @@
       <span class="info-box-icon bg-green">
         <i class="fa fa-building-o"></i>
       </span>
-      <%= render 'all_extra_working_hours', { all_extra_working_seconds: @all_extra_working_seconds, extra_working_rate: @extra_working_rate } %>
+      <%= render 'all_extra_working_hours',
+                 { all_extra_working_seconds: @dashboard.all_extra_working_seconds, extra_working_rate: @dashboard.extra_working_rate } %>
     </div>
   </div>
   <div class="col-md-3 col-sm-6 col-xs-12">
@@ -48,7 +49,7 @@
       <span class="info-box-icon bg-yellow">
         <i class="fa fa-balance-scale"></i>
       </span>
-      <%= render 'average_extra_working_hours', { average_extra_working_seconds: @average_extra_working_seconds } %>
+      <%= render 'average_extra_working_hours', { average_extra_working_seconds: @dashboard.average_extra_working_seconds } %>
     </div>
   </div>
 </div>
