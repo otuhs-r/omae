@@ -30,6 +30,16 @@
         </div>
       <% end %>
       <div class="row">
+        <div class="col-sm-12">
+          <div class="form-check">
+            <div class="icheckbox_minimal-blue">
+            <%= form.check_box :division, { class: "form-check-input", checked: default_check(attendance) } %>
+            <%= form.label 'Work on day off' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-12">
           <div class="form-group">
             <%= form.label 'Date' %>

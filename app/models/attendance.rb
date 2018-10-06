@@ -5,12 +5,18 @@ class Attendance < ApplicationRecord
   validates :clock_out_time, presence: true
   validate :time_validation
 
+  enum division: { ordinary: 0, off_day: 1 }
+
   def working_seconds
     diff_sec_between_clock_in_out - resting_sec
   end
 
   def extra_working_seconds
-    earlier_extra_sec + later_extra_sec
+    if ordinary?
+      earlier_extra_sec + later_extra_sec
+    else
+      working_seconds
+    end
   end
 
   def time_validation
