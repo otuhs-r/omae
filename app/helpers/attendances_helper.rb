@@ -18,6 +18,10 @@ module AttendancesHelper
     column_chart by_day_of_week_api_user_attendances_path(current_user, start_date: start_date, end_date: end_date), basic_opts
   end
 
+  def default_check(attendance)
+    attendance.off_day?
+  end
+
   private
 
   def basic_opts
