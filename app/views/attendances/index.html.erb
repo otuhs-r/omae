@@ -35,7 +35,7 @@
       </thead>
       <tbody>
         <% @attendances.each do |attendance| %>
-          <tr data-link="<%= edit_user_attendance_path(current_user.id, attendance) %>" class="clickable">
+          <tr data-link="<%= edit_user_attendance_path(current_user.id, attendance) %>" class="clickable<%= ' danger' if attendance.off_day? %>">
             <td><%= "#{attendance.date}" %></td>
             <td><%= "#{attendance.clock_in_time.to_s(:time)}" %></td>
             <td><%= "#{attendance.clock_out_time.to_s(:time)}" %></td>

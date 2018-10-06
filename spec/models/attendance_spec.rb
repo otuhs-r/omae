@@ -237,5 +237,17 @@ describe Attendance do
         expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '04:00'
       end
     end
+
+    context 'work day off' do
+      let(:attendance) { build(:attendance, division: 1, user: build(:user)) }
+
+      it 'calculates working hours correctly.' do
+        expect(convert_to_hh_mm_from_sec(attendance.working_seconds)).to eq '08:10'
+      end
+
+      it 'calculates extra working hours correctly.' do
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '08:10'
+      end
+    end
   end
 end

@@ -1,4 +1,10 @@
 <div class="info-box-content" id="days_worked">
   <span class="info-box-text">days worked</span>
   <span class="info-box-number"><%= days_worked %> Day(s)</span>
+  <div class="progress">
+    <div class="progress-bar bg-red" style="width: <%= days_worked.zero? ? 0 : (days_worked_off / days_worked.to_f) * 100 %>%"></div>
+  </div>
+  <span class="progress-description">
+    <strong><%= days_worked_off %></strong> off day(s)
+  </span>
 </div>
