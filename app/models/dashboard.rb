@@ -49,7 +49,7 @@ class Dashboard
 
   def all_working_hours_group_by_month
     @attendances.group_by_month(&:date).map do |k, attendances|
-      [k, attendances.reduce(0.0) { |sum, attendance| sum + attendance.working_seconds / 3600 }.round(2)]
+      [k.strftime('%b'), attendances.reduce(0.0) { |sum, attendance| sum + attendance.working_seconds / 3600 }.round(2)]
     end
   end
 
