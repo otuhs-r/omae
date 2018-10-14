@@ -11,13 +11,6 @@ module AttendancesHelper
     mode == 'New' ? Date.today : attendance.date
   end
 
-  def avg_by_day_of_week_chart(start_date, end_date)
-    now = Time.current
-    start_date ||= now.beginning_of_month
-    end_date ||= now
-    column_chart by_day_of_week_api_user_attendances_path(current_user, start_date: start_date, end_date: end_date), basic_opts
-  end
-
   def default_check(attendance)
     attendance.off_day?
   end
@@ -28,7 +21,10 @@ module AttendancesHelper
     {
       discrete: true,
       legend: false,
-      download: true
+      download: true,
+      label: ' ',
+      ytitle: 'hours',
+      suffix: ' hour(s)'
     }
   end
 end
