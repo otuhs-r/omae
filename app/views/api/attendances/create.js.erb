@@ -1,7 +1,5 @@
 $('#avg_by_day_of_week').replaceWith('<%= j render 'attendances/avg_by_day_of_week' %>');
-$('#all_working_hours').replaceWith('<%= j render 'attendances/all_working_hours', { all_working_seconds: @dashboard.all_working_seconds } %>');
-$('#all_extra_working_hours').replaceWith('<%= j render 'attendances/all_extra_working_hours',
-                              { all_extra_working_seconds: @dashboard.all_extra_working_seconds, extra_working_rate: @dashboard.extra_working_rate } %>');
-$('#average_extra_working_hours').replaceWith('<%= j render 'attendances/average_extra_working_hours',
-                                  { average_extra_working_seconds: @dashboard.average_extra_working_seconds } %>');
-$('#days_worked').replaceWith('<%= j render 'attendances/days_worked', { days_worked: @dashboard.days_worked, days_worked_off: @dashboard.days_worked_off } %>');
+$('#all_working_hours').replaceWith('<%= j render 'attendances/all_working_hours' %>');
+$('#all_extra_working_hours').replaceWith('<%= j render 'attendances/all_extra_working_hours' %>');
+$('#average_extra_working_hours').replaceWith('<%= j render 'attendances/average_extra_working_hours' %>');
+$('#days_worked').replaceWith('<%= j render 'attendances/days_worked' %>');

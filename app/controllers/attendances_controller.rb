@@ -4,7 +4,8 @@ class AttendancesController < ApplicationController
 
   def dashboard
     now = Time.current
-    @dashboard = Dashboard.new(current_user, now.beginning_of_month, now)
+    attendances = current_user.attendances.where(date: now.beginning_of_month..now)
+    @dashboard = Dashboard.new(attendances)
   end
 
   def clock_in_just_now
