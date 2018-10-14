@@ -35,6 +35,24 @@ class Dashboard
     all_working_seconds.zero? ? 0 : ((all_extra_working_seconds / all_working_seconds) * 100).to_i
   end
 
+  def all_working_hours_group_by_day
+    @attendances.group_by_day(&:date).map do |k, attendances|
+      [k, attendances.reduce(0.0) { |sum, attendance| sum + attendance.working_seconds / 3600 }.round(2)]
+    end
+  end
+
+  def all_working_hours_group_by_week
+    @attendances.group_by_week(&:date).map do |k, attendances|
+      [k, attendances.reduce(0.0) { |sum, attendance| sum + attendance.working_seconds / 3600 }.round(2)]
+    end
+  end
+
+  def all_working_hours_group_by_month
+    @attendances.group_by_month(&:date).map do |k, attendances|
+      [k, attendances.reduce(0.0) { |sum, attendance| sum + attendance.working_seconds / 3600 }.round(2)]
+    end
+  end
+
   def average_extra_working_hours_by_day_of_week
     grouped_attendances = @attendances.group_by_day_of_week(&:date)
     data = {}

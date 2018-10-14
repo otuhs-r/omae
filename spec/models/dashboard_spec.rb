@@ -57,6 +57,24 @@ describe Dashboard do
           'Sun' => 0.17, 'Mon' => 0.17, 'Tue' => 0.0, 'Wed' => 0.0, 'Thu' => 0.0, 'Fri' => 0.0, 'Sat' => 0.0
         )
       end
+
+      it 'returns all working hours group by day' do
+        expect(dashboard.all_working_hours_group_by_day).to eq([['Mon, 09 Jul 2018'.to_date, 8.17],
+                                                                ['Mon, 16 Jul 2018'.to_date, 8.17],
+                                                                ['Mon, 23 Jul 2018'.to_date, 8.17],
+                                                                ['Sun, 29 Jul 2018'.to_date, 8.17],
+                                                                ['Mon, 30 Jul 2018'.to_date, 8.17]])
+      end
+
+      it 'returns all working hours group by week' do
+        expect(dashboard.all_working_hours_group_by_week).to eq(
+          [['Sun, 08 Jul 2018'.to_date, 8.17], ['Sun, 15 Jul 2018'.to_date, 8.17], ['Sun, 22 Jul 2018'.to_date, 8.17], ['Sun, 29 Jul 2018'.to_date, 16.33]]
+        )
+      end
+
+      it 'returns all working hours group by month' do
+        expect(dashboard.all_working_hours_group_by_month).to eq([['Sun, 01 Jul 2018'.to_date, 40.83]])
+      end
     end
   end
 end
