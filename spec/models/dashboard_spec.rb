@@ -73,7 +73,7 @@ describe Dashboard do
       end
 
       it 'returns all working hours group by month' do
-        expect(dashboard.all_working_hours_group_by_month).to eq([["Jul", 40.83]])
+        expect(dashboard.all_working_hours_group_by_month).to eq([['Jul', 40.83]])
       end
     end
   end
