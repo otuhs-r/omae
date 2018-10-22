@@ -17,6 +17,7 @@
 //= require bootstrap-datepicker/dist/js/bootstrap-datepicker.min
 //= require datatables.net/js/jquery.dataTables.min
 //= require datatables.net-bs/js/dataTables.bootstrap.min 
+//= require moment/min/moment.min
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
@@ -25,5 +26,7 @@
 //= require chartkick
 
 $(document).on('turbolinks:load', function() {
-    $('body').layout('fix');
+  $('body').layout('fix');
+  $('.date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
+  $('.time').bootstrapMaterialDatePicker({ date: false, format: 'HH:mm' });
 });
