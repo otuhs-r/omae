@@ -6,6 +6,8 @@ class AttendancesController < ApplicationController
     now = Time.current
     attendances = current_user.attendances.where(date: now.beginning_of_month..now)
     @dashboard = Dashboard.new(attendances)
+    @days_all = (now.to_date - now.beginning_of_month.to_date).to_i + 1
+    @all_seconds = now.to_time - now.beginning_of_month.to_time + 60
   end
 
   def clock_in_just_now
