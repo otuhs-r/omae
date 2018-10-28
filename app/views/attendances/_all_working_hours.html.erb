@@ -1,4 +1,10 @@
 <div class="info-box-content" id="all_working_hours">
   <span class="info-box-text">all working</span>
   <span class="info-box-number"><%= convert_to_hh_mm_from_sec(@dashboard.all_working_seconds) %></span>
+  <div class="progress">
+    <div class="progress-bar bg-aqua" style="width: <%= (@dashboard.all_working_seconds / @all_seconds) * 100 %>%"></div>
+  </div>
+  <span class="progress-description">
+    <strong><%= (@dashboard.all_working_seconds / @all_seconds * 100).to_i %>% of your life</strong>
+  </span>
 </div>
