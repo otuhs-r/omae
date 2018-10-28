@@ -2,9 +2,9 @@
   <span class="info-box-text">days worked</span>
   <span class="info-box-number"><%= @dashboard.days_worked %> Day(s)</span>
   <div class="progress">
-    <div class="progress-bar bg-red" style="width: <%= @dashboard.worked_off_rate %>%"></div>
+    <div class="progress-bar bg-red" style="width: <%= (@dashboard.days_worked / @days_all.to_f) * 100 %>%"></div>
   </div>
   <span class="progress-description">
-    <strong><%= @dashboard.days_worked_off %></strong> off day(s)
+    <strong><%= @days_all %></strong> day(s)
   </span>
 </div>
