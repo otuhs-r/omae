@@ -19,14 +19,6 @@ class Dashboard
     @attendances.count
   end
 
-  def days_worked_off
-    @attendances.where(division: :off_day).count
-  end
-
-  def worked_off_rate
-    days_worked_off.zero? ? 0 : (days_worked_off / days_worked.to_f) * 100
-  end
-
   def average_extra_working_seconds
     days_worked.zero? ? 0 : all_extra_working_seconds / days_worked
   end
@@ -37,13 +29,13 @@ class Dashboard
 
   def all_working_hours_group_by_day
     @attendances.group_by_day(&:date).map do |k, attendances|
-      [k, attendances.reduce(0.0) { |sum, attendance| sum + attendance.working_seconds / 3600 }.round(2)]
+      [k.strftime('%m-%d'), attendances.reduce(0.0) { |sum, attendance| sum + attendance.working_seconds / 3600 }.round(2)]
     end
   end
 
   def all_working_hours_group_by_week
     @attendances.group_by_week(&:date).map do |k, attendances|
-      [k, attendances.reduce(0.0) { |sum, attendance| sum + attendance.working_seconds / 3600 }.round(2)]
+      [k.strftime('%m-%d~'), attendances.reduce(0.0) { |sum, attendance| sum + attendance.working_seconds / 3600 }.round(2)]
     end
   end
 

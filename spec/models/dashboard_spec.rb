@@ -59,16 +59,16 @@ describe Dashboard do
       end
 
       it 'returns all working hours group by day' do
-        expect(dashboard.all_working_hours_group_by_day).to eq([['Mon, 09 Jul 2018'.to_date, 8.17],
-                                                                ['Mon, 16 Jul 2018'.to_date, 8.17],
-                                                                ['Mon, 23 Jul 2018'.to_date, 8.17],
-                                                                ['Sun, 29 Jul 2018'.to_date, 8.17],
-                                                                ['Mon, 30 Jul 2018'.to_date, 8.17]])
+        expect(dashboard.all_working_hours_group_by_day).to eq([['07-09', 8.17],
+                                                                ['07-16', 8.17],
+                                                                ['07-23', 8.17],
+                                                                ['07-29', 8.17],
+                                                                ['07-30', 8.17]])
       end
 
       it 'returns all working hours group by week' do
         expect(dashboard.all_working_hours_group_by_week).to eq(
-          [['Sun, 08 Jul 2018'.to_date, 8.17], ['Sun, 15 Jul 2018'.to_date, 8.17], ['Sun, 22 Jul 2018'.to_date, 8.17], ['Sun, 29 Jul 2018'.to_date, 16.33]]
+          [['07-08~', 8.17], ['07-15~', 8.17], ['07-22~', 8.17], ['07-29~', 16.33]]
         )
       end
 
