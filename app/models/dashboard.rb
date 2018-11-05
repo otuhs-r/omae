@@ -1,4 +1,6 @@
 class Dashboard
+  attr_reader :attendances
+
   def initialize(attendances)
     @attendances = attendances
   end
