@@ -28,15 +28,19 @@
     <table class="table table-bordered table-hover dataTable" id="attendances">
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Clock in Time</th>
-          <th>Clock out Time</th>
+          <th>日付</th>
+          <th>労働時間</th>
+          <th>残業時間</th>
+          <th>出勤時刻</th>
+          <th>退勤時刻</th>
         </tr>
       </thead>
       <tbody>
         <% @attendances.each do |attendance| %>
           <tr data-link="<%= edit_user_attendance_path(current_user.id, attendance) %>" class="clickable<%= ' danger' if attendance.off_day? %>">
             <td><%= "#{attendance.date}" %></td>
+            <td><%= "#{convert_to_hh_mm_from_sec(attendance.working_seconds)}" %></td>
+            <td><%= "#{convert_to_hh_mm_from_sec(attendance.extra_working_seconds)}" %></td>
             <td><%= "#{attendance.clock_in_time.to_s(:time)}" %></td>
             <td><%= "#{attendance.clock_out_time.to_s(:time)}" %></td>
           </tr>
@@ -49,11 +53,14 @@
 <script>
   $(document).ready(function() {
     $('#attendances').DataTable({
-      'paging'        : false,
-      'lengthChange'  : false,
-      'searching'     : false,
+      'order'         : [[0, "desc"]],
+      'paging'        : true,
+      'lengthChange'  : true,
+      'lengthMenu'    : [20, 50, 100],
+      'displayLength' : 20,
+      'searching'     : true,
       'ordering'      : true,
-      'info'          : false,
+      'info'          : true,
       'autoWidth'     : true
     })
   });
