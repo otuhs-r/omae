@@ -6,10 +6,10 @@ module ApplicationHelper
   end
 
   def min(attendances)
-    attendances.min_by { |a| a.date }
+    attendances.min_by(&:date)
   end
 
   def max(attendances)
-    attendances.max_by { |a| a.date }
+    attendances.max_by(&:date)
   end
 end

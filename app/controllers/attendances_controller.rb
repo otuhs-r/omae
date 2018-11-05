@@ -53,14 +53,14 @@ class AttendancesController < ApplicationController
 
   def weekly
     @dashboards = []
-    current_user.attendances.group_by_week(&:date).each do |key, value|
+    current_user.attendances.group_by_week(&:date).each do |_key, value|
       @dashboards << Dashboard.new(value)
     end
   end
 
   def monthly
     @dashboards = []
-    current_user.attendances.group_by_month(&:date).each do |key, value|
+    current_user.attendances.group_by_month(&:date).each do |_key, value|
       @dashboards << Dashboard.new(value)
     end
   end
