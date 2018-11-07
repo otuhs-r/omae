@@ -29,7 +29,17 @@ $(document).on('turbolinks:load', function() {
   $('body').layout('fix');
   $('.date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
   $('.time').bootstrapMaterialDatePicker({ date: false, format: 'HH:mm' });
-
+  $('#attendances').DataTable({
+    'order'         : [[0, "desc"]],
+    'paging'        : true,
+    'lengthChange'  : true,
+    'lengthMenu'    : [20, 50, 100],
+    'displayLength' : 20,
+    'searching'     : true,
+    'ordering'      : true,
+    'info'          : true,
+    'autoWidth'     : true
+  });
   $.extend( $.fn.dataTable.defaults, {
     language: {
       url: "http://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
