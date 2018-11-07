@@ -39,25 +39,3 @@
     </table>
   </div>
 </div>
-
-<script>
-  $(document).ready(function() {
-    $('#attendances').DataTable({
-      'order'         : [[0, "desc"]],
-      'paging'        : true,
-      'lengthChange'  : true,
-      'lengthMenu'    : [20, 50, 100],
-      'displayLength' : 20,
-      'searching'     : true,
-      'ordering'      : true,
-      'info'          : true,
-      'autoWidth'     : true
-    })
-  });
-</script>
-
-<script>
-  $("tr[data-link]").click(function() {
-    window.location = $(this).data("link")
-  })
-</script>
