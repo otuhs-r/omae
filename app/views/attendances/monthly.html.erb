@@ -1,0 +1,41 @@
+<section class="content-header">
+  <h1>
+    <i class="fa fa-calendar-o"></i> Monthly Attendances
+    <small>omae</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><%= link_to 'Home', root_path %></li>
+    <li class="active">Monthly Attendances</li>
+  </ol>
+</section>
+<hr>
+
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">月次勤怠</h3>
+  </div>
+  <div class="box-body">
+    <table class="table table-bordered table-hover dataTable" id="attendances">
+      <thead>
+        <tr>
+          <th>年月</th>
+          <th>総労働時間</th>
+          <th>総残業時間</th>
+          <th>平均残業時間</th>
+          <th>就業日数</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @dashboards.each do |dashboard| %>
+          <tr>
+            <td><%= "#{dashboard.attendances.first.date.strftime('%Y年%m月')}" %></td>
+            <td><%= "#{convert_to_hh_mm_from_sec(dashboard.all_working_seconds)}" %></td>
+            <td><%= "#{convert_to_hh_mm_from_sec(dashboard.all_extra_working_seconds)}" %></td>
+            <td><%= "#{convert_to_hh_mm_from_sec(dashboard.average_extra_working_seconds)}" %></td>
+            <td><%= "#{dashboard.days_worked}" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

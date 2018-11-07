@@ -1,26 +1,26 @@
 <section class="content-header">
   <h1>
-    <i class="fa fa-database"></i> Attendances
+    <i class="fa fa-database"></i> Daily Attendances
     <small>omae</small>
   </h1>
   <ol class="breadcrumb">
     <li><%= link_to 'Home', root_path %></li>
-    <li class="active">Attendances</li>
+    <li class="active">Daily Attendances</li>
   </ol>
 </section>
 <hr>
 
 <div class="box box-default">
   <div class="box-header with-border">
-    <h3 class="box-title">Attendances</h3>
+    <h3 class="box-title">日次勤怠</h3>
       <div class="btn-group pull-right">
-        <%= link_to 'New Attendance', new_user_attendance_path, class: "btn btn-success" %>
+        <%= link_to '新規登録', new_user_attendance_path, class: "btn btn-success" %>
         <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-          <li><%= link_to 'Clock In !', attendances_clock_in_just_now_path, method: :post %></li>
-          <li><%= link_to 'Clock Out !', attendances_clock_out_just_now_path, method: :post %></li>
+          <li><%= link_to '出勤なう', attendances_clock_in_just_now_path, method: :post %></li>
+          <li><%= link_to '退勤なう', attendances_clock_out_just_now_path, method: :post %></li>
         </ul>
       </div>
   </div>
@@ -28,15 +28,19 @@
     <table class="table table-bordered table-hover dataTable" id="attendances">
       <thead>
         <tr>
-          <th>Date</th>
-          <th>Clock in Time</th>
-          <th>Clock out Time</th>
+          <th>日付</th>
+          <th>労働時間</th>
+          <th>残業時間</th>
+          <th>出勤時刻</th>
+          <th>退勤時刻</th>
         </tr>
       </thead>
       <tbody>
         <% @attendances.each do |attendance| %>
           <tr data-link="<%= edit_user_attendance_path(current_user.id, attendance) %>" class="clickable<%= ' danger' if attendance.off_day? %>">
             <td><%= "#{attendance.date}" %></td>
+            <td><%= "#{convert_to_hh_mm_from_sec(attendance.working_seconds)}" %></td>
+            <td><%= "#{convert_to_hh_mm_from_sec(attendance.extra_working_seconds)}" %></td>
             <td><%= "#{attendance.clock_in_time.to_s(:time)}" %></td>
             <td><%= "#{attendance.clock_out_time.to_s(:time)}" %></td>
           </tr>
@@ -45,19 +49,6 @@
     </table>
   </div>
 </div>
-
-<script>
-  $(document).ready(function() {
-    $('#attendances').DataTable({
-      'paging'        : false,
-      'lengthChange'  : false,
-      'searching'     : false,
-      'ordering'      : true,
-      'info'          : false,
-      'autoWidth'     : true
-    })
-  });
-</script>
 
 <script>
   $("tr[data-link]").click(function() {

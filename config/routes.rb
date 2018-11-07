@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   post 'attendances/clock_out_just_now', to: 'attendances#clock_out_just_now'
   resources :users, except: :show do
     resources :attendances, except: :show
+    get 'attendances/weekly', to: 'attendances#weekly'
+    get 'attendances/monthly', to: 'attendances#monthly'
   end
   namespace :api do
     resources :users, only: [] do
