@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'attendances#dashboard'
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'registrations' }
   get 'users/show', to: 'users#show'
   post 'attendances/clock_in_just_now', to: 'attendances#clock_in_just_now'
   post 'attendances/clock_out_just_now', to: 'attendances#clock_out_just_now'
