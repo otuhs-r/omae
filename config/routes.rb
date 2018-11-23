@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'users/show', to: 'users#show'
   post 'attendances/clock_in_just_now', to: 'attendances#clock_in_just_now'
   post 'attendances/clock_out_just_now', to: 'attendances#clock_out_just_now'
-  resources :users, except: :show do
+  resources :users, only: [] do
     resources :attendances, except: :show
     get 'attendances/weekly', to: 'attendances#weekly'
     get 'attendances/monthly', to: 'attendances#monthly'
