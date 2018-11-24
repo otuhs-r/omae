@@ -29,5 +29,6 @@ module Omae
     config.time_zone = 'Tokyo'
     config.active_record.time_zone_aware_types = [:datetime]
     config.assets.paths << config.root.join('node_modules')
+    config.i18n.default_locale = :ja
   end
 end

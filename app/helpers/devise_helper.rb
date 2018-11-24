@@ -1,10 +1,10 @@
 module DeviseHelper
   def devise_error_messages!
-    return "" if !defined?(resource) || resource.errors.empty?
+    return '' if !defined?(resource) || resource.errors.empty?
 
-    html = ""
-    messages = resource.errors.full_messages.each do |errmsg|
-      html += <<-EOF
+    html = ''
+    resource.errors.full_messages.each do |errmsg|
+      html += <<-ALT
       <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert">
           <span aria-hidden="true">&times;</span>
@@ -12,7 +12,7 @@ module DeviseHelper
         </button>
         #{errmsg}
       </div>
-      EOF
+      ALT
     end
     html.html_safe
   end
