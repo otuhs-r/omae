@@ -12,14 +12,14 @@ class AttendancesController < ApplicationController
 
   def clock_in_just_now
     flash_message = if current_user.attendances.find { |a| a.date == Time.zone.now.to_date }
-                      { alert: 'Attendance has been already recorded today.' }
+                      { alert: '本日の勤怠情報はすでに登録されています' }
                     else
                       attendance_params = { date: Time.zone.now.to_date, clock_in_time: Time.zone.now, clock_out_time: current_user.work_end_time }
                       attendance = current_user.attendances.build(attendance_params)
                       if attendance.save
-                        { notice: 'Attendance was successfully created.' }
+                        { notice: '勤怠情報を登録しました' }
                       else
-                        { alert: 'Clock in time should be earlier than clock out time.' }
+                        { alert: '出勤時刻は就業時刻より前である必要があります' }
                       end
                     end
     redirect_to user_attendances_path(current_user.id), flash_message
@@ -30,18 +30,18 @@ class AttendancesController < ApplicationController
     flash_message = if attendance
                       attendance_params = { clock_out_time: Time.zone.now }
                       if attendance.update(attendance_params)
-                        { notice: 'Attendance was successfully updated.' }
+                        { notice: '勤怠情報を更新しました' }
                       else
-                        { alert: 'Clock out time should be later than clock in time.' }
+                        { alert: '退勤時刻は始業時刻より後である必要があります' }
                       end
                     else
                       attendance_params =
                         { date: Time.zone.now.to_date, clock_in_time: current_user.work_start_time, clock_out_time: Time.zone.now }
                       attendance = current_user.attendances.build(attendance_params)
                       if attendance.save
-                        { notice: 'Attendance was successfully created.' }
+                        { notice: '勤怠情報を登録しました' }
                       else
-                        { alert: 'Clock out time should be later than clock in time.' }
+                        { alert: '退勤時刻は始業時刻より後である必要があります' }
                       end
                     end
     redirect_to user_attendances_path(current_user.id), flash_message
@@ -76,7 +76,7 @@ class AttendancesController < ApplicationController
     @attendance = current_user.attendances.build(attendance_params)
 
     if @attendance.save
-      redirect_to user_attendances_path(current_user.id), notice: 'Attendance was successfully created.'
+      redirect_to user_attendances_path(current_user.id), notice: '勤怠情報を登録しました'
     else
       render :new
     end
@@ -84,7 +84,7 @@ class AttendancesController < ApplicationController
 
   def update
     if @attendance.update(attendance_params)
-      redirect_to user_attendances_path(current_user.id), notice: 'Attendance was successfully updated.'
+      redirect_to user_attendances_path(current_user.id), notice: '勤怠情報を更新しました'
     else
       render :edit
     end
@@ -92,7 +92,7 @@ class AttendancesController < ApplicationController
 
   def destroy
     @attendance.destroy
-    redirect_to user_attendances_path(current_user.id), notice: 'Attendance was successfully destroyed.'
+    redirect_to user_attendances_path(current_user.id), notice: '勤怠情報を削除しました'
   end
 
   private
