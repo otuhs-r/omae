@@ -22,7 +22,7 @@
       <div class="form-group">
         <%= f.label :password %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em>(<%= @minimum_password_length %>文字以上)</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
       </div>
@@ -38,7 +38,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :work_start_time, autocomplete: "off",  class: "form-control time", value: "09:00" %>
+              <%= f.text_field :work_start_time, autocomplete: "off",  class: "form-control time" %>
             </div>
           </div>
         </div>
@@ -49,7 +49,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :work_end_time, autocomplete: "off",  class: "form-control time", value: "18:00" %>
+              <%= f.text_field :work_end_time, autocomplete: "off",  class: "form-control time" %>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :rest_start_time, autocomplete: "off",  class: "form-control time", value: "12:00" %>
+              <%= f.text_field :rest_start_time, autocomplete: "off",  class: "form-control time" %>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :rest_end_time, autocomplete: "off",  class: "form-control time", value: "13:00" %>
+              <%= f.text_field :rest_end_time, autocomplete: "off",  class: "form-control time" %>
             </div>
           </div>
         </div>
