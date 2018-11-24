@@ -1,10 +1,10 @@
 <div class="info-box-content" id="days_worked">
-  <span class="info-box-text">days worked</span>
-  <span class="info-box-number"><%= @dashboard.days_worked %> Day(s)</span>
+  <span class="info-box-text">就業日数</span>
+  <span class="info-box-number"><%= @dashboard.days_worked %> 日</span>
   <div class="progress">
     <div class="progress-bar bg-red" style="width: <%= (@dashboard.days_worked / @days_all.to_f) * 100 %>%"></div>
   </div>
   <span class="progress-description">
-    <strong><%= @days_all %></strong> day(s)
+    <strong><%= @days_all %></strong> 日中
   </span>
 </div>

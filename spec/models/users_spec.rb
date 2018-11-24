@@ -14,11 +14,6 @@ describe User do
       is_expected.to be_invalid
     end
 
-    it 'is invalid without a email.' do
-      user.email = nil
-      is_expected.to be_invalid
-    end
-
     it 'is invalid without a work start time.' do
       user.work_start_time = nil
       is_expected.to be_invalid
@@ -40,7 +35,7 @@ describe User do
     end
 
     it 'is invalid with a too long user name.' do
-      user.user_name = 'a' * 11
+      user.user_name = 'a' * 21
       is_expected.to be_invalid
     end
 

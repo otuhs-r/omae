@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    <i class="fa fa-sign-in"></i> Sign in
+    <i class="fa fa-sign-in"></i>ログイン
     <small>omae</small>
   </h1>
 </section>
@@ -10,13 +10,13 @@
 <div class="box box-default">
   <div class="box-header with-border">
     <i class="fa fa-ediit"></i>
-    <h3 class="box-title">Sign in</h3>
+    <h3 class="box-title">アカウント情報</h3>
   </div>
   <div class="box-body">
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-group">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        <%= f.label :user_name %><br />
+        <%= f.text_field :user_name, autofocus: true, class: "form-control" %>
       </div>
 
       <div class="form-group">
@@ -34,7 +34,7 @@
       <% end -%>
 
       <div class="actions">
-        <%= f.submit "Sign in", class: "btn btn-primary" %>
+        <%= f.submit "ログイン", class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>

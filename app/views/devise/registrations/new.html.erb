@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    <i class="fa fa-user-plus"></i> Sign up
+    <i class="fa fa-user-plus"></i>アカウント登録
     <small>omae</small>
   </h1>
 </section>
@@ -9,7 +9,7 @@
 <div class="box box-default">
   <div class="box-header with-border">
     <i class="fa fa-ediit"></i>
-    <h3 class="box-title">Sign up</h3>
+    <h3 class="box-title">アカウント情報</h3>
   </div>
   <div class="box-body">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -20,13 +20,9 @@
         <%= f.text_field :user_name, autofocus: true, class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
-      </div>
-      <div class="form-group">
         <%= f.label :password %>
         <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em>(<%= @minimum_password_length %>文字以上)</em>
         <% end %><br />
         <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
       </div>
@@ -42,7 +38,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :work_start_time, autocomplete: "off",  class: "form-control time", value: "09:00" %>
+              <%= f.text_field :work_start_time, autocomplete: "off",  class: "form-control time" %>
             </div>
           </div>
         </div>
@@ -53,7 +49,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :work_end_time, autocomplete: "off",  class: "form-control time", value: "18:00" %>
+              <%= f.text_field :work_end_time, autocomplete: "off",  class: "form-control time" %>
             </div>
           </div>
         </div>
@@ -66,7 +62,7 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :rest_start_time, autocomplete: "off",  class: "form-control time", value: "12:00" %>
+              <%= f.text_field :rest_start_time, autocomplete: "off",  class: "form-control time" %>
             </div>
           </div>
         </div>
@@ -77,13 +73,13 @@
               <div class="input-group-addon">
                 <i class="fa fa-clock-o"></i>
               </div>
-              <%= f.text_field :rest_end_time, autocomplete: "off",  class: "form-control time", value: "13:00" %>
+              <%= f.text_field :rest_end_time, autocomplete: "off",  class: "form-control time" %>
             </div>
           </div>
         </div>
       </div>
       <div class="actions">
-        <%= f.submit "Sign up", class: "btn btn-primary" %>
+        <%= f.submit "登録", class: "btn btn-primary" %>
       </div>
     <% end %>
   </div>

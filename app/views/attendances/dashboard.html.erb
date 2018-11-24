@@ -1,11 +1,11 @@
 <section class="content-header">
   <h1>
-    <i class="fa fa-area-chart"></i> Dashboard
+    <i class="fa fa-area-chart"></i> ダッシュボード
     <small>omae</small>
   </h1>
   <ol class="breadcrumb">
-    <li><%= link_to 'Home', root_path %></li>
-    <li class="active">Dashboard</li>
+    <li><%= link_to 'ホーム', root_path %></li>
+    <li class="active">ダッシュボード</li>
   </ol>
 </section>
 <hr>
@@ -15,12 +15,12 @@
     <div class="col-lg-6 col-xs-9">
       <div class="input-daterange input-group" id="datepicker">
         <input type="text" class="input-sm form-control date" autocomplete="off" name="start_date" id="start_date" value=<%= Time.current.beginning_of_month %>/>
-        <span class="input-group-addon">to</span>
+        <span class="input-group-addon">〜</span>
         <input type="text" class="input-sm form-control date" autocomplete="off" name="end_date" id="end_date" value=<%= Time.current %>/>
       </div>
     </div>
     <div class="col-xs-1">
-      <%= submit_tag 'Show!', class: 'btn btn-primary' %>
+      <%= button_tag '表示', class: 'btn btn-primary' %>
     </div>
   <% end %>
 </div>
@@ -65,16 +65,16 @@
     <div class="nav-tabs-custom">
       <ul class="nav nav-tabs pull-right">
         <li class="active">
-          <a href="#group_by_day" data-toggle="tab">Day</a>
+          <a href="#group_by_day" data-toggle="tab">日次</a>
         </li>
         <li>
-          <a href="#group_by_week" data-toggle="tab">Week</a>
+          <a href="#group_by_week" data-toggle="tab">週次</a>
         </li>
         <li>
-          <a href="#group_by_month" data-toggle="tab">Month</a>
+          <a href="#group_by_month" data-toggle="tab">月次</a>
         </li>
         <li class="pull-left header">
-          All Working Hours group by
+          総労働時間
         </li>
       </ul>
       <div class="tab-content">
@@ -93,7 +93,7 @@
   <div class="col-md-6 col-sm-12">
     <div class="box box-danger">
       <div class="box-header with-border">
-        <h3 class="box-title">Avg. of Extra Working Hours by Day of Week</h3>
+        <h3 class="box-title">曜日別 平均残業時間</h3>
       </div>
       <div class="box-body">
         <%= render 'avg_by_day_of_week' %>

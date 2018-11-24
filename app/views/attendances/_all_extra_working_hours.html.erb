@@ -1,10 +1,10 @@
 <div class="info-box-content" id="all_extra_working_hours">
-  <span class="info-box-text">all extra working</span>
+  <span class="info-box-text">総残業時間</span>
   <span class="info-box-number"><%= convert_to_hh_mm_from_sec(@dashboard.all_extra_working_seconds) %></span>
   <div class="progress">
     <div class="progress-bar bg-green" style="width: <%= @dashboard.extra_working_rate %>%"></div>
   </div>
   <span class="progress-description">
-    <strong><%= @dashboard.extra_working_rate %>%</strong> of all working hours
+    総労働時間の<strong><%= @dashboard.extra_working_rate %>%</strong>
   </span>
 </div>

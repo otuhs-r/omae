@@ -18,6 +18,7 @@
 //= require datatables.net/js/jquery.dataTables.min
 //= require datatables.net-bs/js/dataTables.bootstrap.min 
 //= require moment/min/moment.min
+//= require moment/locale/ja
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
@@ -27,8 +28,18 @@
 
 $(document).on('turbolinks:load', function() {
   $('body').layout('fix');
-  $('.date').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
-  $('.time').bootstrapMaterialDatePicker({ date: false, format: 'HH:mm' });
+  $('.date').bootstrapMaterialDatePicker({
+    weekStart : 0, time: false,
+    lang: 'ja',
+    cancelText: 'キャンセル',
+    okTexk: '決定'
+  });
+  $('.time').bootstrapMaterialDatePicker({
+    date: false, format: 'HH:mm',
+    lang: 'ja',
+    cancelText: 'キャンセル',
+    okTexk: '決定'
+  });
   $('#attendances').DataTable({
     'order'         : [[0, "desc"]],
     'paging'        : true,
@@ -38,11 +49,25 @@ $(document).on('turbolinks:load', function() {
     'searching'     : true,
     'ordering'      : true,
     'info'          : true,
-    'autoWidth'     : true
-  });
-  $.extend( $.fn.dataTable.defaults, {
-    language: {
-      url: "https://cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Japanese.json"
+    'autoWidth'     : true,
+    'language': {
+      "decimal": ".",
+      "thousands": ",",
+      "sProcessing": "処理中...",
+      "sLengthMenu": "_MENU_ 件表示",
+      "sZeroRecords": "データはありません。",
+      "sInfo": " _TOTAL_ 件中 _START_ から _END_ まで表示",
+      "sInfoEmpty": " 0 件中 0 から 0 まで表示",
+      "sInfoFiltered": "（全 _MAX_ 件より抽出）",
+      "sInfoPostFix": "",
+      "sSearch": "検索:",
+      "sUrl": "",
+      "oPaginate": {
+        "sFirst": "先頭",
+        "sPrevious": "前",
+        "sNext": "次",
+        "sLast": "最終"
+      }
     }
   });
 });
