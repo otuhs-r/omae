@@ -2,6 +2,7 @@ ja:
   activerecord:
     models:
       user: ユーザ
+      attendance: 勤怠
     attributes:
       user:
         user_name: ユーザ名
@@ -12,4 +13,8 @@ ja:
         work_end_time: 終業時刻
         rest_start_time: 休憩開始時刻
         rest_end_time: 休憩終了時刻
+      attendance:
+        clock_in_time: 出勤時刻
+        clock_out_time: 退勤時刻
+        date: 日付
 
