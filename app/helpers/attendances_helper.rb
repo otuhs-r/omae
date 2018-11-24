@@ -15,6 +15,10 @@ module AttendancesHelper
     attendance.off_day?
   end
 
+  def mode_to_ja(mode)
+    mode == 'New' ? '登録' : '編集'
+  end
+
   private
 
   def basic_opts
@@ -23,8 +27,8 @@ module AttendancesHelper
       legend: false,
       download: true,
       label: ' ',
-      ytitle: 'hours',
-      suffix: ' hour(s)'
+      ytitle: '時間',
+      suffix: ' 時間'
     }
   end
 end

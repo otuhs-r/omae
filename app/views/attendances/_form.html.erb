@@ -1,20 +1,20 @@
 <section class="content-header">
   <h1>
-    <i class="fa fa-clock-o"></i> <%= mode %> Attendance
+    <i class="fa fa-clock-o"></i>勤怠<%= mode_to_ja(mode) %>
     <small>omae</small>
   </h1>
   <ol class="breadcrumb">
-    <li><%= link_to 'Home', root_path %></li>
-    <li><%= link_to 'Attendances', user_attendances_path(current_user.id) %></li>
-    <li class="active"><%= mode %></li>
+    <li><%= link_to 'ホーム', root_path %></li>
+    <li><%= link_to '日次勤怠', user_attendances_path(current_user.id) %></li>
+    <li class="active"><%= mode_to_ja(mode) %></li>
   </ol>
 </section>
 <hr>
 
 <div class="box box-default">
   <div class="box-header with-border">
-    <h3 class="box-title"><%= mode %> Attendance</h3>
-    <%= link_to '', user_attendance_path(current_user.id, attendance), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger fa fa-trash pull-right" if mode == 'Edit' %>
+    <h3 class="box-title">勤怠<%= mode_to_ja(mode) %></h3>
+    <%= link_to '', user_attendance_path(current_user.id, attendance), method: :delete, data: { confirm: '削除しますか?' }, class: "btn btn-danger fa fa-trash pull-right" if mode == 'Edit' %>
   </div>
   <div class="box-body">
     <%= form_with(model: attendance, url: path, local: true) do |form| %>
@@ -34,7 +34,7 @@
           <div class="form-check">
             <div class="icheckbox_minimal-blue">
             <%= form.check_box :division, { class: "form-check-input", checked: default_check(attendance) } %>
-            <%= form.label 'Work on day off' %>
+            <%= form.label '休日出勤' %>
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="form-group">
-            <%= form.label 'Date' %>
+            <%= form.label :date %>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-calendar"></i>
@@ -77,8 +77,7 @@
         </div>
       </div>
       <div class="actions">
-        <%= form.submit mode == 'New' ? 'Create' : 'Update', class: "btn btn-success" %>
-        <%= link_to 'Cancel', user_attendances_path(current_user.id), class: "btn btn-default" %>
+        <%= form.submit mode == 'New' ? '登録' : '更新', class: "btn btn-success" %>
       </div>
     <% end %>
   </div>

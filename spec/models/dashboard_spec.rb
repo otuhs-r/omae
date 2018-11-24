@@ -17,7 +17,7 @@ describe Dashboard do
 
       it 'returns all zero as average of extra working hours by day of week.' do
         expect(dashboard.average_extra_working_hours_by_day_of_week).to eq(
-          'Sun' => 0.0, 'Mon' => 0.0, 'Tue' => 0.0, 'Wed' => 0.0, 'Thu' => 0.0, 'Fri' => 0.0, 'Sat' => 0.0
+          '日' => 0.0, '月' => 0.0, '火' => 0.0, '水' => 0.0, '木' => 0.0, '金' => 0.0, '土' => 0.0
         )
       end
     end
@@ -38,7 +38,7 @@ describe Dashboard do
 
       it 'returns average of extra working hours by day of week correctly.' do
         expect(dashboard.average_extra_working_hours_by_day_of_week).to eq(
-          'Sun' => 0.17, 'Mon' => 0.17, 'Tue' => 0.0, 'Wed' => 0.0, 'Thu' => 0.0, 'Fri' => 0.0, 'Sat' => 0.0
+          '日' => 0.17, '月' => 0.17, '火' => 0.0, '水' => 0.0, '木' => 0.0, '金' => 0.0, '土' => 0.0
         )
       end
     end
@@ -54,7 +54,7 @@ describe Dashboard do
 
       it 'returns average of extra working hours by day of week correctly.' do
         expect(dashboard.average_extra_working_hours_by_day_of_week).to eq(
-          'Sun' => 0.17, 'Mon' => 0.17, 'Tue' => 0.0, 'Wed' => 0.0, 'Thu' => 0.0, 'Fri' => 0.0, 'Sat' => 0.0
+          '日' => 0.17, '月' => 0.17, '火' => 0.0, '水' => 0.0, '木' => 0.0, '金' => 0.0, '土' => 0.0
         )
       end
 

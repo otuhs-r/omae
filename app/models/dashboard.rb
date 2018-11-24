@@ -50,7 +50,7 @@ class Dashboard
   def average_extra_working_hours_by_day_of_week
     grouped_attendances = @attendances.group_by_day_of_week(&:date)
     data = {}
-    { 0 => 'Sun', 1 => 'Mon', 2 => 'Tue', 3 => 'Wed', 4 => 'Thu', 5 => 'Fri', 6 => 'Sat' }.each do |key, value|
+    { 0 => '日', 1 => '月', 2 => '火', 3 => '水', 4 => '木', 5 => '金', 6 => '土' }.each do |key, value|
       if grouped_attendances.key?(key)
         average = grouped_attendances[key].reduce(0.0) { |sum, attendance| sum + attendance.extra_working_seconds / 3600 } / grouped_attendances[key].count
         data.store(value, average.round(2))

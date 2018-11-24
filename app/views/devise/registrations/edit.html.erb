@@ -1,12 +1,12 @@
 <section class="content-header">
   <h1>
-    <i class="fa fa-edit"></i> Edit Profile
+    <i class="fa fa-edit"></i>アカウント情報編集
     <small>omae</small>
   </h1>
   <ol class="breadcrumb">
-    <li><%= link_to 'Home', root_path %></li>
-    <li><%= link_to 'Profile', users_show_path %></li>
-    <li class="active">Edit</li>
+    <li><%= link_to 'ホーム', root_path %></li>
+    <li><%= link_to 'アカウント情報', users_show_path %></li>
+    <li class="active">編集</li>
   </ol>
 </section>
 <hr>
@@ -14,7 +14,7 @@
 <div class="box box-default">
   <div class="box-header with-border">
     <i class="fa fa-ediit"></i>
-    <h3 class="box-title">Edit Profile</h3>
+    <h3 class="box-title">プロフィール</h3>
   </div>
   <div class="box-body">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -72,7 +72,7 @@
         </div>
       </div>
       <div class="box-footer">
-        <%= f.submit "Save", class: "btn btn-success" %>
+        <%= f.submit "保存", class: "btn btn-success" %>
       </div>
     <% end %>
   </div>
