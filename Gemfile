@@ -40,6 +40,7 @@ gem 'chartkick'
 gem 'devise'
 gem 'groupdate'
 gem 'listen', '>= 3.0.5', '< 3.2'
+gem 'rails-i18n'
 gem 'rubocop', require: false
 
 group :development, :test do
