@@ -56,12 +56,15 @@
           <ul class="sidebar-menu" data-widget="tree">
             <!-- Optionally, you can add icons to the links -->
             <% if user_signed_in? %>
-              <li class="header">ホーム</li>
-              <li><a href=<%= root_path %>><i class="fa fa-area-chart"></i><span>ダッシュボード</span></a></li>
+              <li class="header">ダッシュボード</li>
+              <li><a href=<%= root_path %>><i class="fa fa-area-chart"></i><span>サマリー</span></a></li>
               <li class="header">勤怠情報</li>
-              <li><a href=<%= user_attendances_path(current_user.id) %>><i class="fa fa-database"></i><span>日次</span></a></li>
-              <li><a href=<%= user_attendances_weekly_path(current_user.id) %>><i class="fa fa-table"></i><span>週次</span></a></li>
-              <li><a href=<%= user_attendances_monthly_path(current_user.id) %>><i class="fa fa-calendar-o"></i><span>月次</span></a></li>
+              <li><a href=<%= user_attendances_path(current_user.id) %>><i class="fa fa-database"></i><span>日次勤怠</span></a></li>
+              <li><a href=<%= user_attendances_weekly_path(current_user.id) %>><i class="fa fa-table"></i><span>週次勤怠</span></a></li>
+              <li><a href=<%= user_attendances_monthly_path(current_user.id) %>><i class="fa fa-calendar-o"></i><span>月次勤怠</span></a></li>
+              <li class="header">その他</li>
+              <li><a href="#"><i class="fa fa-question-circle"></i><span>使い方</span></a></li>
+              <li><a href="#"><i class="fa fa-book"></i><span>免責事項</span></a></li>
             <% end %>
           </ul>_index
           <!-- /.sidebar-menu -->
@@ -90,12 +93,6 @@
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->
-
-      <!-- Main Footer -->
-      <footer class="main-footer">
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2018 <a href="#">OMAE</a>.</strong> All rights reserved.
-      </footer>
 
       <!-- Control Sidebar -->
       <aside class="control-sidebar control-sidebar-dark">
