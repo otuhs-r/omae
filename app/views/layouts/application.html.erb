@@ -69,8 +69,8 @@
               <li><a href=<%= user_attendances_weekly_path(current_user.id) %>><i class="fa fa-table"></i><span>週次勤怠</span></a></li>
               <li><a href=<%= user_attendances_monthly_path(current_user.id) %>><i class="fa fa-calendar-o"></i><span>月次勤怠</span></a></li>
               <li class="header">その他</li>
-              <li><a href="#"><i class="fa fa-question-circle"></i><span>使い方</span></a></li>
-              <li><a href="#"><i class="fa fa-book"></i><span>免責事項</span></a></li>
+              <li><a href=<%= others_help_path %>><i class="fa fa-question-circle"></i><span>使い方</span></a></li>
+              <li><a href=<%= others_disclaimer_path %>><i class="fa fa-book"></i><span>免責事項</span></a></li>
             <% end %>
           </ul>_index
           <!-- /.sidebar-menu -->

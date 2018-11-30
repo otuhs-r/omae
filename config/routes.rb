@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'others/help'
+  get 'others/disclaimer'
+  get 'others/welcome'
   root 'attendances#dashboard'
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'users/show', to: 'users#show'
