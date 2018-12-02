@@ -74,7 +74,6 @@
               <li><a href=<%= user_attendances_monthly_path(current_user.id) %>><i class="fa fa-calendar-o"></i><span>月次勤怠</span></a></li>
               <li class="header">その他</li>
               <li><a href=<%= others_help_path %>><i class="fa fa-question-circle"></i><span>使い方</span></a></li>
-              <li><a href=<%= others_disclaimer_path %>><i class="fa fa-book"></i><span>免責事項</span></a></li>
             <% end %>
           </ul>_index
           <!-- /.sidebar-menu -->
@@ -103,6 +102,12 @@
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->
+      <footer class="main-footer">
+        <div class="pull-right">
+          <small><a href=<%= others_disclaimer_path %>><i class="fa fa-book"></i><span>免責事項</span></a></small>
+        </div>
+        <strong>Copyright &copy; 2018 <a href="#">OMAE</a></strong>
+      </footer>
     </div>
     <%= javascript_include_tag "timepicker" %>
     <%= javascript_include_tag "datepicker" %>
