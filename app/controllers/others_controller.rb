@@ -1,4 +1,6 @@
 class OthersController < ApplicationController
+  before_action :authenticate_user!, only: [:help]
+
   def help
   end
 
