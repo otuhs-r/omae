@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'others/help'
   get 'others/disclaimer'
   get 'others/welcome'
-  root 'attendances#dashboard'
+  root 'others#welcome'
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'users/show', to: 'users#show'
   post 'attendances/clock_in_just_now', to: 'attendances#clock_in_just_now'
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :attendances, except: :show
     get 'attendances/weekly', to: 'attendances#weekly'
     get 'attendances/monthly', to: 'attendances#monthly'
+    get 'attendances/sammary', to: 'attendances#sammary'
   end
   namespace :api do
     resources :users, only: [] do

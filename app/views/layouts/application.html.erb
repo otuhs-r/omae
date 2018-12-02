@@ -69,7 +69,7 @@
             <!-- Optionally, you can add icons to the links -->
             <% if user_signed_in? %>
               <li class="header">ダッシュボード</li>
-              <li><a href=<%= root_path %>><i class="fa fa-area-chart"></i><span>サマリー</span></a></li>
+              <li><a href=<%= user_attendances_sammary_path(current_user.id) %>><i class="fa fa-area-chart"></i><span>サマリー</span></a></li>
               <li class="header">勤怠情報</li>
               <li><a href=<%= user_attendances_path(current_user.id) %>><i class="fa fa-database"></i><span>日次勤怠</span></a></li>
               <li><a href=<%= user_attendances_weekly_path(current_user.id) %>><i class="fa fa-table"></i><span>週次勤怠</span></a></li>
