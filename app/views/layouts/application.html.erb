@@ -16,7 +16,7 @@
 
       <!-- Main Header -->
       <header class="main-header">
-        <a href=<%= root_path %> class="logo">
+        <a href=<%= signed_in? ? user_attendances_sammary_path(current_user.id) : root_path %> class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>O</b>MAE</span>
           <!-- logo for regular state and mobile devices -->
@@ -108,7 +108,7 @@
         <div class="pull-right">
           <small><a href=<%= others_disclaimer_path %>><i class="fa fa-book"></i><span>免責事項</span></a></small>
         </div>
-        <strong>Copyright &copy; 2018 <a href="#">OMAE</a></strong>
+        <strong>Copyright &copy; 2018 OMAE</strong>
       </footer>
     </div>
     <%= javascript_include_tag "timepicker" %>
