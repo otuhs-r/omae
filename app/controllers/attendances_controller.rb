@@ -2,7 +2,7 @@ class AttendancesController < ApplicationController
   before_action :set_attendance, only: %i[show edit update destroy]
   include ApplicationHelper
 
-  def sammary
+  def summary
     now = Time.current
     attendances = current_user.attendances.where(date: now.beginning_of_month..now)
     @dashboard = Dashboard.new(attendances)

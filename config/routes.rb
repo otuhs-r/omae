@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :attendances, except: :show
     get 'attendances/weekly', to: 'attendances#weekly'
     get 'attendances/monthly', to: 'attendances#monthly'
-    get 'attendances/sammary', to: 'attendances#sammary'
+    get 'attendances/summary', to: 'attendances#summary'
   end
   namespace :api do
     resources :users, only: [] do
