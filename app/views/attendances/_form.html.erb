@@ -1,10 +1,10 @@
 <section class="content-header">
   <h1>
-    <i class="fa fa-clock-o"></i>勤怠<%= mode_to_ja(mode) %>
+    <i class="fa fa-clock-o"></i> 勤怠<%= mode_to_ja(mode) %>
     <small>omae</small>
   </h1>
   <ol class="breadcrumb">
-    <li><%= link_to 'ホーム', root_path %></li>
+    <li>勤怠情報</li>
     <li><%= link_to '日次勤怠', user_attendances_path(current_user.id) %></li>
     <li class="active"><%= mode_to_ja(mode) %></li>
   </ol>

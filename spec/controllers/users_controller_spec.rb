@@ -17,7 +17,6 @@ describe UsersController, type: :controller do
       it 'has expected data.' do
         get 'show'
         expect(assigns(:user_name)).to eq subject.current_user.user_name
-        expect(assigns(:email)).to eq subject.current_user.email
         expect(assigns(:work_start_time)).to eq subject.current_user.work_start_time
         expect(assigns(:work_end_time)).to eq subject.current_user.work_end_time
         expect(assigns(:rest_start_time)).to eq subject.current_user.rest_start_time
