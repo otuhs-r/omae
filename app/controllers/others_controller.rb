@@ -8,5 +8,6 @@ class OthersController < ApplicationController
   end
 
   def welcome
+    redirect_to user_attendances_summary_path(current_user.id) if signed_in?
   end
 end
