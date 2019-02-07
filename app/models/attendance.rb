@@ -28,27 +28,27 @@ class Attendance < ApplicationRecord
   end
 
   def clock_in_time
-    self[:clock_in_time].present? ? Time.parse(self[:clock_in_time].to_s(:time)) : nil
+    self[:clock_in_time].present? ? Time.zone.parse(self[:clock_in_time].to_s(:time)) : nil
   end
 
   def clock_out_time
-    self[:clock_out_time].present? ? Time.parse(self[:clock_out_time].to_s(:time)) : nil
+    self[:clock_out_time].present? ? Time.zone.parse(self[:clock_out_time].to_s(:time)) : nil
   end
 
   def work_start_time
-    Time.parse(user.work_start_time.to_s(:time))
+    Time.zone.parse(user.work_start_time.to_s(:time))
   end
 
   def work_end_time
-    Time.parse(user.work_end_time.to_s(:time))
+    Time.zone.parse(user.work_end_time.to_s(:time))
   end
 
   def rest_start_time
-    Time.parse(user.rest_start_time.to_s(:time))
+    Time.zone.parse(user.rest_start_time.to_s(:time))
   end
 
   def rest_end_time
-    Time.parse(user.rest_end_time.to_s(:time))
+    Time.zone.parse(user.rest_end_time.to_s(:time))
   end
 
   private
