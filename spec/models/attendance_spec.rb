@@ -78,7 +78,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-01:55'
       end
     end
 
@@ -90,7 +90,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-04:55'
       end
     end
 
@@ -102,7 +102,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-05:55'
       end
     end
 
@@ -114,7 +114,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '03:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-05:00'
       end
     end
 
@@ -126,7 +126,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-00:55'
       end
     end
 
@@ -138,7 +138,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-02:00'
       end
     end
 
@@ -150,7 +150,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-06:00'
       end
     end
 
@@ -162,7 +162,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-07:00'
       end
     end
 
@@ -174,7 +174,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-02:55'
       end
     end
 
@@ -186,7 +186,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-04:00'
       end
     end
 
@@ -198,7 +198,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-08:00'
       end
     end
 
@@ -210,7 +210,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:05'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-03:55'
       end
     end
 
@@ -222,7 +222,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '00:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-05:00'
       end
     end
 
@@ -234,7 +234,7 @@ describe Attendance do
       end
 
       it 'calculates extra working hours correctly.' do
-        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '04:00'
+        expect(convert_to_hh_mm_from_sec(attendance.extra_working_seconds)).to eq '-04:00'
       end
     end
 

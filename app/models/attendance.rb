@@ -12,8 +12,10 @@ class Attendance < ApplicationRecord
   end
 
   def extra_working_seconds
-    if ordinary?
-      earlier_extra_sec + later_extra_sec
+    case
+    when ordinary?
+      normal_working_seconds = (work_end_time - work_start_time) - (rest_end_time - rest_start_time)
+      working_seconds - normal_working_seconds
     else
       working_seconds
     end
