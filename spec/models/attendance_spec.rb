@@ -58,7 +58,7 @@ describe Attendance do
   end
 
   describe 'working hours' do
-    context 'clock in <= work stat && work_end <= clcok out' do
+    context 'clock in <= work start && work_end <= clcok out' do
       let(:attendance) { build(:attendance, user: build(:user)) }
 
       it 'calculates working hours correctly.' do
