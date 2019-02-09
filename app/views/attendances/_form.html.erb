@@ -30,12 +30,10 @@
         <% end %>
       <% end %>
       <div class="row">
-        <div class="col-sm-12">
-          <div class="form-check">
-            <div class="icheckbox_minimal-blue">
-            <%= form.check_box :division, { class: "form-check-input", checked: default_check(attendance) } %>
-            <%= form.label '休日出勤' %>
-            </div>
+        <div class="col-sm-6 col-md-2">
+          <div class="form-group">
+            <%= form.label '勤怠区分' %>
+            <%= form.select :division, Attendance.divisions.keys.map { |k| [I18n.t("enums.attendance.division.#{k}"), k] }, {}, { class: "form-control" } %>
           </div>
         </div>
       </div>
