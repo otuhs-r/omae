@@ -5,19 +5,26 @@ class Attendance < ApplicationRecord
   validates :clock_out_time, presence: true
   validate :time_validation
 
-  enum division: { ordinary: 0, off_day: 1 }
+  enum division: { ordinary: 0, off_day: 1, morning_off: 2, afternoon_off: 3 }
 
   def working_seconds
     diff_sec_between_clock_in_out - resting_sec
   end
 
   def extra_working_seconds
+    working_seconds - normal_working_seconds
+  end
+
+  def normal_working_seconds
     case
     when ordinary?
-      normal_working_seconds = (work_end_time - work_start_time) - (rest_end_time - rest_start_time)
-      working_seconds - normal_working_seconds
-    else
-      working_seconds
+      (work_end_time - work_start_time) - (rest_end_time - rest_start_time)
+    when off_day?
+      0.0
+    when morning_off?
+      work_end_time - rest_end_time
+    when afternoon_off?
+      rest_start_time - work_start_time
     end
   end
 
@@ -98,23 +105,5 @@ class Attendance < ApplicationRecord
 
   def clock_out_after_rest_end?
     rest_end_time <= clock_out_time
-  end
-
-  def earlier_extra_sec
-    if work_start_time <= clock_out_time
-      earlier_sec = work_start_time - clock_in_time
-      earlier_sec >= 0 ? earlier_sec : 0.0
-    else
-      clock_out_time - clock_in_time
-    end
-  end
-
-  def later_extra_sec
-    if clock_in_time <= work_end_time
-      later_sec = clock_out_time - work_end_time
-      later_sec >= 0 ? later_sec : 0.0
-    else
-      clock_out_time - clock_in_time
-    end
   end
 end
