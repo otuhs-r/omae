@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'chartkick'
 gem 'devise'
+gem 'enum_help'
 gem 'groupdate'
 gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'rails-i18n'
