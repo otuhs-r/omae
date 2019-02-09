@@ -6,6 +6,13 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  enums:
+    attendance:
+      division:
+        ordinary: 通常
+        off_day: 休日出勤
+        morning_off: 午前半休
+        afternoon_off: 午後半休
   date:
     abbr_day_names:
     - 日
