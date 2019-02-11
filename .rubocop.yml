@@ -29,3 +29,5 @@ Style/IfUnlessModifier:
   Enabled: false
 Style/EmptyCaseCondition:
   Enabled: false
+Style/AsciiComments:
+  Enabled: false
