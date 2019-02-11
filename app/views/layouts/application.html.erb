@@ -71,12 +71,10 @@
               <li class="header">ダッシュボード</li>
               <li><a href=<%= user_attendances_summary_path(current_user.id) %>><i class="fa fa-area-chart"></i><span>サマリー</span></a></li>
               <li><a href=<%= user_attendances_labor_reform_path(current_user.id) %>><i class="fa fa-bar-chart"></i><span>労基法ボード</span></a></li>
-              <li class="header">勤怠情報</li>
+              <li class="header">勤怠データ</li>
               <li><a href=<%= user_attendances_path(current_user.id) %>><i class="fa fa-database"></i><span>日次勤怠</span></a></li>
               <li><a href=<%= user_attendances_weekly_path(current_user.id) %>><i class="fa fa-table"></i><span>週次勤怠</span></a></li>
               <li><a href=<%= user_attendances_monthly_path(current_user.id) %>><i class="fa fa-calendar-o"></i><span>月次勤怠</span></a></li>
-              <li class="header">その他</li>
-              <li><a href=<%= others_help_path %>><i class="fa fa-question-circle"></i><span>使い方</span></a></li>
             <% end %>
           </ul>
           <!-- /.sidebar-menu -->
@@ -106,10 +104,7 @@
       </div>
       <!-- /.content-wrapper -->
       <footer class="main-footer">
-        <div class="pull-right">
-          <small><a href=<%= others_disclaimer_path %>><i class="fa fa-book"></i><span>免責事項</span></a></small>
-        </div>
-        <strong>Copyright &copy; 2018 OMAE</strong>
+        <strong>Copyright &copy; 2019 OMAE</strong>
       </footer>
     </div>
     <%= javascript_include_tag "timepicker" %>
