@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     get 'attendances/weekly', to: 'attendances#weekly'
     get 'attendances/monthly', to: 'attendances#monthly'
     get 'attendances/summary', to: 'attendances#summary'
+    get 'attendances/labor_reform', to: 'attendances#labor_standard_law_board'
   end
   namespace :api do
     resources :users, only: [] do

@@ -19,6 +19,15 @@ module AttendancesHelper
     mode == 'New' ? '登録' : '編集'
   end
 
+  def warning_message(month, extra_working_seconds)
+    seconds = (80 * 60 * 60) * month.to_i - extra_working_seconds
+    if seconds >= 0
+      "今月あと #{convert_to_hh_mm_from_sec(seconds)} 時間残業すると上限に到達します"
+    else
+      "今月の残業時間を #{convert_to_hh_mm_from_sec(-seconds)} 時間削減すると上限に収まります"
+    end
+  end
+
   private
 
   def basic_opts

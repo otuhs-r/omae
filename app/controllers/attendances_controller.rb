@@ -10,6 +10,10 @@ class AttendancesController < ApplicationController
     @all_seconds = now.to_time - now.beginning_of_month.to_time + 60
   end
 
+  def labor_standard_law_board
+    @labor_standard_law_board = LaborStandardLawBoard.new
+  end
+
   def clock_in_just_now
     flash_message = if current_user.attendances.find { |a| a.date == Time.zone.now.to_date }
                       { alert: '本日の勤怠情報はすでに登録されています' }
