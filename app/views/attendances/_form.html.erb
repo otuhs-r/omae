@@ -1,10 +1,10 @@
 <section class="content-header">
   <h1>
-    <i class="fa fa-clock-o"></i>勤怠<%= mode_to_ja(mode) %>
+    <i class="fa fa-clock-o"></i> 勤怠<%= mode_to_ja(mode) %>
     <small>omae</small>
   </h1>
   <ol class="breadcrumb">
-    <li><%= link_to 'ホーム', root_path %></li>
+    <li>勤怠情報</li>
     <li><%= link_to '日次勤怠', user_attendances_path(current_user.id) %></li>
     <li class="active"><%= mode_to_ja(mode) %></li>
   </ol>
@@ -30,12 +30,10 @@
         <% end %>
       <% end %>
       <div class="row">
-        <div class="col-sm-12">
-          <div class="form-check">
-            <div class="icheckbox_minimal-blue">
-            <%= form.check_box :division, { class: "form-check-input", checked: default_check(attendance) } %>
-            <%= form.label '休日出勤' %>
-            </div>
+        <div class="col-sm-6 col-md-2">
+          <div class="form-group">
+            <%= form.label '勤怠区分' %>
+            <%= form.select :division, Attendance.divisions.keys.map { |k| [I18n.t("enums.attendance.division.#{k}"), k] }, {}, { class: "form-control" } %>
           </div>
         </div>
       </div>

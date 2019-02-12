@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe AttendancesController, type: :controller do
-  describe 'GET #dashboard' do
+  describe 'GET #summary' do
     login_user
 
     before do
-      get 'dashboard'
+      get 'summary', params: { user_id: subject.current_user.id }
     end
 
     it 'returns success status.' do
@@ -13,7 +13,7 @@ RSpec.describe AttendancesController, type: :controller do
     end
 
     it 'displays :dashboard template' do
-      expect(response).to render_template :dashboard
+      expect(response).to render_template :summary
     end
 
     context 'when current user has no attendances' do

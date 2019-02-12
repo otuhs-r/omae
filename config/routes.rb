@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root 'attendances#dashboard'
+  get 'others/welcome'
+  root 'others#welcome'
   devise_for :users, controllers: { registrations: 'registrations' }
   get 'users/show', to: 'users#show'
   post 'attendances/clock_in_just_now', to: 'attendances#clock_in_just_now'
@@ -8,6 +9,8 @@ Rails.application.routes.draw do
     resources :attendances, except: :show
     get 'attendances/weekly', to: 'attendances#weekly'
     get 'attendances/monthly', to: 'attendances#monthly'
+    get 'attendances/summary', to: 'attendances#summary'
+    get 'attendances/labor_reform', to: 'attendances#labor_standard_law_board'
   end
   namespace :api do
     resources :users, only: [] do

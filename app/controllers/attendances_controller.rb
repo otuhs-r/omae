@@ -2,12 +2,16 @@ class AttendancesController < ApplicationController
   before_action :set_attendance, only: %i[show edit update destroy]
   include ApplicationHelper
 
-  def dashboard
+  def summary
     now = Time.current
     attendances = current_user.attendances.where(date: now.beginning_of_month..now)
     @dashboard = Dashboard.new(attendances)
     @days_all = (now.to_date - now.beginning_of_month.to_date).to_i + 1
     @all_seconds = now.to_time - now.beginning_of_month.to_time + 60
+  end
+
+  def labor_standard_law_board
+    @labor_standard_law_board = LaborStandardLawBoard.new(current_user)
   end
 
   def clock_in_just_now
@@ -104,7 +108,6 @@ class AttendancesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def attendance_params
-    params[:attendance][:division] = params[:attendance][:division].to_i
     params.require(:attendance).permit(:clock_in_time, :clock_out_time, :date, :division)
   end
 end

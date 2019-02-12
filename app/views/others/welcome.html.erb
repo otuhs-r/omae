@@ -1,0 +1,26 @@
+<div class="jumbotron jumbotron-fluid bg-purple">
+  <div class="container">
+    <h1 class="display-4" id="top-title">OMAE </h1><span>個人用勤怠管理アプリ</span>
+    <br>
+    <br>
+    <p class="lead">自分がどれくらい仕事に時間を費やしているか、きちんと把握してみませんか。</p>
+    <%= link_to '無料ではじめてみる', new_user_session_path, class: "btn btn-primary" %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="thumbnail">
+      <%= image_tag 'welcome/summary', class: "img-responsive" %>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="thumbnail">
+      <%= image_tag 'welcome/labor_reform', class: "img-responsive" %>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <div class="thumbnail">
+      <%= image_tag 'welcome/daily', class: "img-responsive" %>
+    </div>
+  </div>
+</div>

@@ -16,7 +16,7 @@
 
       <!-- Main Header -->
       <header class="main-header">
-        <a href=<%= root_path %> class="logo">
+        <a href=<%= signed_in? ? user_attendances_summary_path(current_user.id) : root_path %> class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>O</b>MAE</span>
           <!-- logo for regular state and mobile devices -->
@@ -32,16 +32,28 @@
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-              <li class="dropdown user user-menu">
+              <li class="dropdown notifications-menu">
                 <% if user_signed_in? %>
-                  <a href=<%= users_show_path %>>
-                    <span><%= current_user.user_name %></span>
-                  </a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= current_user.user_name %></a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <ul class="menu">
+                        <li>
+                          <%= link_to users_show_path do %>
+                            <i class="fa fa-info-circle"></i>アカウント情報
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to destroy_user_session_path, method: :delete do %>
+                            <i class="fa fa-sign-out"></i>ログアウト
+                          <% end %>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                <% else %>
+                  <%= link_to 'ログイン / 登録', new_user_session_path %>
                 <% end %>
-              </li>
-              <!-- Control Sidebar Toggle Button -->
-              <li>
-                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
               </li>
             </ul>
           </div>
@@ -56,14 +68,15 @@
           <ul class="sidebar-menu" data-widget="tree">
             <!-- Optionally, you can add icons to the links -->
             <% if user_signed_in? %>
-              <li class="header">ホーム</li>
-              <li><a href=<%= root_path %>><i class="fa fa-area-chart"></i><span>ダッシュボード</span></a></li>
-              <li class="header">勤怠情報</li>
-              <li><a href=<%= user_attendances_path(current_user.id) %>><i class="fa fa-database"></i><span>日次</span></a></li>
-              <li><a href=<%= user_attendances_weekly_path(current_user.id) %>><i class="fa fa-table"></i><span>週次</span></a></li>
-              <li><a href=<%= user_attendances_monthly_path(current_user.id) %>><i class="fa fa-calendar-o"></i><span>月次</span></a></li>
+              <li class="header">ダッシュボード</li>
+              <li><a href=<%= user_attendances_summary_path(current_user.id) %>><i class="fa fa-area-chart"></i><span>サマリー</span></a></li>
+              <li><a href=<%= user_attendances_labor_reform_path(current_user.id) %>><i class="fa fa-bar-chart"></i><span>労基法ボード</span></a></li>
+              <li class="header">勤怠データ</li>
+              <li><a href=<%= user_attendances_path(current_user.id) %>><i class="fa fa-database"></i><span>日次勤怠</span></a></li>
+              <li><a href=<%= user_attendances_weekly_path(current_user.id) %>><i class="fa fa-table"></i><span>週次勤怠</span></a></li>
+              <li><a href=<%= user_attendances_monthly_path(current_user.id) %>><i class="fa fa-calendar-o"></i><span>月次勤怠</span></a></li>
             <% end %>
-          </ul>_index
+          </ul>
           <!-- /.sidebar-menu -->
         </section>
         <!-- /.sidebar -->
@@ -90,41 +103,9 @@
         <!-- /.content -->
       </div>
       <!-- /.content-wrapper -->
-
-      <!-- Main Footer -->
       <footer class="main-footer">
-        <!-- Default to the left -->
-        <strong>Copyright &copy; 2018 <a href="#">OMAE</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; 2019 OMAE</strong>
       </footer>
-
-      <!-- Control Sidebar -->
-      <aside class="control-sidebar control-sidebar-dark">
-        <!-- Create the tabs -->
-        <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-          <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-          <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-        </ul>
-        <!-- Tab panes -->
-        <div class="tab-content">
-          <!-- Home tab content -->
-          <div class="tab-pane active" id="control-sidebar-home-tab">
-          </div>
-          <div class="tab-pane" id="control-sidebar-settings-tab">
-            <form method="post">
-              <h3 class="control-sidebar-heading">General Settings</h3>
-                <ul class="control-sidebar-menu">
-                  <li>
-                    <% if user_signed_in? %>
-                      <%= link_to destroy_user_session_path, method: :delete, class: "control-sidebar-subheading" do %>
-                        <i class="fa fa-sign-out"></i> Sign out
-                      <% end %>
-                    <% end %>
-                  </li>
-                </ul>
-            </form>
-          </div>
-        </div>
-      </aside>
     </div>
     <%= javascript_include_tag "timepicker" %>
     <%= javascript_include_tag "datepicker" %>
