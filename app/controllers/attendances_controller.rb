@@ -11,7 +11,7 @@ class AttendancesController < ApplicationController
   end
 
   def labor_standard_law_board
-    @labor_standard_law_board = LaborStandardLawBoard.new
+    @labor_standard_law_board = LaborStandardLawBoard.new(current_user)
   end
 
   def clock_in_just_now

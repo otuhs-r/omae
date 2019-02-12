@@ -6,7 +6,6 @@ describe LaborStandardLawBoard do
   describe 'labor standard law' do
     context 'attendances exist' do
       before(:each) do
-        user = build(:user)
         3.times { create(:attendance_apr, user: user) }
         5.times { create(:attendance_may, user: user) }
         10.times { create(:attendance_jun, user: user) }
@@ -17,7 +16,8 @@ describe LaborStandardLawBoard do
         FactoryBot.reload
       end
 
-      let(:lsl_board) { LaborStandardLawBoard.new }
+      let(:user) { build(:user) }
+      let(:lsl_board) { LaborStandardLawBoard.new(user) }
 
       it 'extra_working_hours_group_by_month' do
         travel_to(Time.zone.local(2018, 6, 30, 23, 0, 0)) do
@@ -56,7 +56,8 @@ describe LaborStandardLawBoard do
     end
 
     context 'attendances do not exist' do
-      let(:lsl_board) { LaborStandardLawBoard.new }
+      let(:user) { build(:user) }
+      let(:lsl_board) { LaborStandardLawBoard.new(user) }
 
       it 'extra_working_hours_group_by_month' do
         travel_to(Time.zone.local(2018, 6, 30, 23, 0, 0)) do
