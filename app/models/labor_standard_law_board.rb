@@ -1,8 +1,8 @@
 class LaborStandardLawBoard
-  def initialize
+  def initialize(user)
     today = Time.zone.now.to_date
     one_year_ago = today - 1.year
-    monthly_attendances = Attendance.where(date: one_year_ago..today).group_by_month(&:date)
+    monthly_attendances = user.attendances.where(date: one_year_ago..today).group_by_month(&:date)
     @monthly_extra_working_seconds = 11.downto(0).map { |n| (Time.zone.now - n.months).month }.map do |m|
       tmp = monthly_attendances.map do |k, attendances|
         [k.month, attendances.reduce(0.0) { |sum, attendance| sum + attendance.extra_working_seconds }]
