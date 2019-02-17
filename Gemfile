@@ -43,6 +43,7 @@ gem 'groupdate'
 gem 'listen', '>= 3.0.5', '< 3.2'
 gem 'rails-i18n'
 gem 'rubocop', require: false
+gem 'serviceworker-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
