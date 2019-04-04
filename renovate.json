@@ -1,4 +1,3 @@
 {
-  "includePaths": ["Gemfile", "Gemfile.lock"],
   "bundler": { "enabled": true }
 }
