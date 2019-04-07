@@ -1,14 +1,10 @@
-image: ruby:2.5.1
+image: ruby:2.6.1
 
 services:
   - postgres:latest
 
 variables:
   POSTGRES_DB: omae_test
-
-cache:
-  paths:
-    - vendor/ruby
 
 stages:
   - static_code_analysis
@@ -21,15 +17,31 @@ before_script:
   - gem install bundler  --no-ri --no-rdoc
   - bundle install -j $(nproc) --path vendor
 
+dependabot:
+  image: dependabot/dependabot-core
+  before_script:
+    - bundle install -j $(nproc) --path vendor
+  script: bundle exec ruby ./generic-update-script.rb
+  only:
+    - schedules
+
 rubocop:
   stage: static_code_analysis
+  cache:
+    paths:
+      - vendor/ruby
   script:
   - bundle exec rubocop
   only:
   - branches
+  except:
+  - schedules
 
 rspec:
   stage: test
+  cache:
+    paths:
+      - vendor/ruby
   script:
   - cp config/database.yml.gitlab config/database.yml
   - RAILS_ENV=test bundle exec rails db:create db:schema:load
@@ -38,6 +50,8 @@ rspec:
   artifacts:
     paths:
     - coverage/
+  except:
+  - schedules
 
 pages:
   stage: deploy
@@ -51,22 +65,34 @@ pages:
     expire_in: 30 days
   only:
   - master
+  except:
+  - schedules
 
 deploy_staging:
   stage: deploy
   environment: staging
+  cache:
+    paths:
+      - vendor/ruby
   script:
   - gem install dpl
   - dpl --provider=heroku --app=omae-app-staging --api-key=$HEROKU_PRODUCTION_KEY
   only:
   - develop
+  except:
+  - schedules
 
 
 deploy:
   stage: deploy
   environment: production
+  cache:
+    paths:
+      - vendor/ruby
   script:
   - gem install dpl
   - dpl --provider=heroku --app=omae-app --api-key=$HEROKU_PRODUCTION_KEY
   only:
   - master
+  except:
+  - schedules
