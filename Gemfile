@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 2.8'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'chartkick'
-gem 'dependabot-omnibus', '~> 0.99.0'
+gem 'dependabot-omnibus', '~> 0.102.1'
 gem 'devise'
 gem 'enum_help'
 gem 'groupdate'
